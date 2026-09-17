@@ -1,0 +1,1 @@
+this folder will have all the data we found on the internet (csv, xlsx, pdf, docx, etc.) in order to implement the RAG agent 
