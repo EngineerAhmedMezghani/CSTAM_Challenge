@@ -1,0 +1,81 @@
+{
+  "title": "Data Engineer at OliveSoft",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+      "title": "Data Engineer",
+      "start_date": "2025-09",
+      "end_date": null,
+      "duration_months": 13,
+      "description": "",
+      "summary": "Full-time Data Engineer role at OliveSoft.",
+      "key_contributions": [],
+      "skills": [
+        "Google Cloud Platform (GCP)",
+        "Data Engineering",
+        "Dataform",
+        "n8n",
+        "Microsoft Power BI"
+      ]
+    },
+    {
+      "title": "End of Studies Internship (PFE)",
+      "start_date": "2025-02",
+      "end_date": "2025-06",
+      "duration_months": 5,
+      "description": "",
+      "summary": "End of studies internship at OliveSoft.",
+      "key_contributions": [],
+      "skills": [
+        "Google Cloud Platform (GCP)",
+        "Data", 
+        "Web Development",
+        "Cloud",
+        "Apache Airflow",
+        "Google BigQuery"
+      ]
+    },
+    {
+      "title": "Summer Internship",
+      "start_date": "2024-06",
+      "end_date": "2024-07",
+      "duration_months": 2,
+      "description": "Data analysis and market trends for insurance applications.",
+      "summary": "Executed web scraping and data cleaning on insurance applications, built an interactive Power BI dashboard, and applied NLP-based topic modeling to deliver a comprehensive analysis of market trends.",
+      "key_contributions": [
+        "Executed web scraping of websites to systematically extract relevant data on various insurance applications, then developed a script for subsequent data cleaning.",
+        "Developed and deployed an interactive dashboard using Power BI for advanced data visualization and in-depth analysis.",
+        "Utilized NLP-based topic modeling techniques to analyze application descriptions, identifying key topics and themes, thereby delivering a comprehensive analysis of market trends."
+      ],
+      "skills": [
+        "Python (Programming Language)",
+        "Microsoft Power BI",
+        "NLP"
+      ]
+    },
+    {
+      "title": "Summer Internship",
+      "start_date": "2023-06",
+      "end_date": "2023-08",
+      "duration_months": 3,
+      "description": "Real-time environmental monitoring system with Raspberry Pi.",
+      "summary": "Built a real-time monitoring system gathering temperature, pressure, and humidity values from sensors connected to a Raspberry Pi 4, with instant storage in Firebase and visualization through a mobile application.",
+      "key_contributions": [
+        "Gathered temperature, pressure, and humidity values using DHT11 and BMP280 sensors connected to a Raspberry Pi 4 board.",
+        "Implemented instant storage of data in a real-time Firebase database.",
+        "Enabled real-time monitoring of the recorded temperature, pressure, and humidity and consulting data evolution in the database, visualized through curves plotted on the mobile application."
+      ],
+      "skills": [
+        "Python (Programming Language)",
+        "Team Work",
+        "Raspberry Pi",
+        "Firebase",
+        "Flutter"
+      ]
+    }
+  ]
+}

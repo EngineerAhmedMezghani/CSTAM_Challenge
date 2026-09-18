@@ -1,0 +1,160 @@
+{
+  "title": "Cloud and DevOps Engineer at OliveSoft",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+      "title": "Data Engineering Intern",
+      "start_date": "2025-02",
+      "end_date": null,
+      "duration_months": 9,
+      "description": "",
+      "summary": null,
+      "key_contributions": [],
+      "skills": [
+        "Salesforce Lightning",
+        "apex",
+        "Git",
+        "talend",
+        "salesforce",
+        "salesforce object query language (soql)"
+      ]
+    },
+    {
+      "title": "AI Engineer",
+      "start_date": "2024-02",
+      "end_date": "2025-05",
+      "duration_months": 4,
+      "description": null,
+      "summary": null,
+      "key_contributions": [],
+      "skills": [
+        "Python",
+        "OpenCV",
+        "TensorFlow",
+        "Flask"
+      ]
+    },
+    {
+      "title": "Mobile Development Intern",
+      "start_date": "2023-06",
+      "end_date": "2023-08",
+      "duration_months": 3,
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+      ],
+      "skills": [
+        "Flutter",
+        "Firebase",
+        "python"
+      ]
+    },
+    {
+      "title": "Data Science Intern",
+      "start_date": "2024-07",
+      "end_date": "2024-08",
+      "duration_months": 2,
+      "description": "ecoKid mobile application - age prediction from mobile sensors.",
+      "summary": "Contributed to the development of the ecoKid mobile app, which uses a TensorFlow Lite model to predict the user's age from mobile sensor data and enforce content restrictions for children.",
+      "key_contributions": [
+        "Contributed to the development of a mobile application called ecoKid.",
+        "Used a TensorFlow Lite model to predict the user's age based on data from integrated mobile sensors such as the gyroscope, accelerometer, and rotation vector.",
+        "Implemented restrictions based on the prediction result - blocking access to specific applications if the user is identified as a child."
+      ],
+      "skills": [
+        "Machine Learning",
+        "Android Development"
+      ]
+    },
+    {
+      "title": "Federated Learning and ML Intern",
+      "start_date": "2024-06",
+      "end_date": "2024-06",
+      "duration_months": 1,
+      "description": "Federated learning architecture using Docker containers.",
+      "summary": "Built an efficient federated learning architecture using Docker containers, with one server and two clients, enabling collaborative model training while keeping data decentralized.",
+      "key_contributions": [
+        "Built a federated learning architecture using Docker containers, involving one server and two clients.",
+        "Enabled multiple clients to collaboratively train a machine learning model while keeping their data decentralized, enhancing privacy and security.",
+        "Implemented the client workflow where each client processes local data and sends only model updates to the server, which aggregates them to improve the global model."
+      ],
+      "skills": [
+        "Federated Learning",
+        "DevOps"
+      ]
+    },
+    {
+      "title": "DevOps Intern",
+      "start_date": "2023-07",
+      "end_date": "2023-08",
+      "duration_months": 2,
+      "description": "Data ingestion with Logstash and Elasticsearch (Elastic Stack).",
+      "summary": "Worked with Logstash and Elasticsearch to collect, transform, and transport data from various sources into a distributed search and analytics engine.",
+      "key_contributions": [
+        "Gained hands-on experience with Logstash, the data ingestion component of the Elastic Stack.",
+        "Configured Logstash pipelines, defined data sources, and applied data transformations.",
+        "Ensured the collected data was clean, standardized, and efficiently indexed into Elasticsearch."
+      ],
+      "skills": [
+        "Data Visualization",
+        "DevOps",
+        "Elastic Stack"
+      ]
+    },
+    {
+      "title": "Data Science and Business Analytics Intern",
+      "start_date": "2023-04",
+      "end_date": "2023-05",
+      "duration_months": 2,
+      "description": "Data science internship to improve practical skills.",
+      "summary": "Started as a data science intern to improve skills, collaborating with teams and contributing to projects that bring value to the organization.",
+      "key_contributions": [
+        "Improved data science skills through hands-on work.",
+        "Collaborated with teams and contributed to projects that bring value to the organization.",
+        "Gained hands-on experience and developed new skills."
+      ],
+      "skills": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "title": "Data Science Intern",
+      "start_date": "2022-07",
+      "end_date": "2022-08",
+      "duration_months": 2,
+      "description": "Computer vision system for ocular movement tracking.",
+      "summary": "Developed a computer vision system designed to track ocular movements using Python's Mediapipe and OpenCV libraries.",
+      "key_contributions": [
+        "Developed a computer vision system designed to track ocular movements.",
+        "Used Python's Mediapipe and OpenCV libraries.",
+        "Significantly heightened awareness and knowledge in the fields of machine learning and deep learning."
+      ],
+      "skills": [
+        "Machine Learning",
+        "Deep Learning"
+      ]
+    },
+    {
+      "title": "Web Development Intern",
+      "start_date": "2021-07",
+      "end_date": "2021-08",
+      "duration_months": 2,
+      "description": "Soccer field booking website.",
+      "summary": "Designed and developed a soccer field booking website, leveraging the Ionic framework for mobile applications.",
+      "key_contributions": [
+        "Designed and developed a soccer field booking website.",
+        "Leveraged the Ionic framework for mobile applications.",
+        "Advanced expertise in both web and mobile development."
+      ],
+      "skills": [
+        "Web Development",
+        "Ionic Framework",
+        "Mobile Development"
+      ]
+    }
+  ]
+}
