@@ -1,0 +1,35 @@
+{
+  "title": "Intern AI & Data Engineer",
+  "position": "Intern",
+  "company": "OliveSoft",
+  "start_date": "2026-02",
+  "end_date": "2026-06",
+  "duration_months": 5,
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "description": "AI-driven platform for B2B prospecting and business opportunity matching – Final Year Project (PFE)",
+  "summary": "Developed an end-to-end AI-driven platform for B2B prospecting and business opportunity matching, aimed at identifying relevant market signals and connecting them with suitable profiles or services.",
+  "key_contributions": [
+    "Designed and implemented a full data pipeline for collecting, cleaning, and normalizing heterogeneous data from multiple web sources.",
+    "Built NLP-based processing modules for information extraction, entity recognition, and semantic analysis using embeddings.",
+    "Developed a multi-dimensional scoring engine combining rule-based logic, machine learning signals, and LLM-based reasoning to ensure both performance and explainability.",
+    "Designed an agent-based AI architecture with specialized agents for search, analysis, and generation, coordinated through a Human-in-the-Loop validation process.",
+    "Implemented semantic matching using vector search and reranking techniques to improve relevance and accuracy of results.",
+    "Orchestrated workflows using n8n to automate data processing and AI pipelines.",
+    "Deployed the system on cloud infrastructure with a modular and scalable architecture."
+  ],
+  "skills": [
+    "NLP",
+    "Google Cloud Platform (GCP)",
+    "n8n",
+    "Vector Databases",
+    "Large Language Models (LLMs)",
+    "Graph Embeddings",
+    "Agentic AI Development",
+    "Data Engineering",
+    "Web Scraping",
+    "AI Orchestration"
+  ]
+}
