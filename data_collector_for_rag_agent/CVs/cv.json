@@ -1,35 +1,115 @@
 {
-  "title": "Intern AI & Data Engineer",
-  "position": "Intern",
+  "title": "Data Engineer at OliveSoft",
   "company": "OliveSoft",
-  "start_date": "2026-02",
-  "end_date": "2026-06",
-  "duration_months": 5,
   "location": {
     "city": "Sfax",
     "country": "Tunisia"
   },
-  "description": "AI-driven platform for B2B prospecting and business opportunity matching – Final Year Project (PFE)",
-  "summary": "Developed an end-to-end AI-driven platform for B2B prospecting and business opportunity matching, aimed at identifying relevant market signals and connecting them with suitable profiles or services.",
-  "key_contributions": [
-    "Designed and implemented a full data pipeline for collecting, cleaning, and normalizing heterogeneous data from multiple web sources.",
-    "Built NLP-based processing modules for information extraction, entity recognition, and semantic analysis using embeddings.",
-    "Developed a multi-dimensional scoring engine combining rule-based logic, machine learning signals, and LLM-based reasoning to ensure both performance and explainability.",
-    "Designed an agent-based AI architecture with specialized agents for search, analysis, and generation, coordinated through a Human-in-the-Loop validation process.",
-    "Implemented semantic matching using vector search and reranking techniques to improve relevance and accuracy of results.",
-    "Orchestrated workflows using n8n to automate data processing and AI pipelines.",
-    "Deployed the system on cloud infrastructure with a modular and scalable architecture."
-  ],
-  "skills": [
+  "projects": [
+    {
+    "title":"Intern AI & Data engineer",
+    "start_date": "2026-02",
+    "end_date": "2026-06",
+    "duration_months": 5,
+    "description": "AI-driven platform for B2B prospecting and business opportunity matching – Final Year Project (PFE)",
+    "summary": "Developed an end-to-end AI-driven platform for B2B prospecting and business opportunity matching, aimed at identifying relevant market signals and connecting them with suitable profiles or services.",
+    "key_contributions": [
+        "Designed and implemented a full data pipeline for collecting, cleaning, and normalizing heterogeneous data from multiple web sources.",
+        "Built NLP-based processing modules for information extraction, entity recognition, and semantic analysis using embeddings.",
+        "Developed a multi-dimensional scoring engine combining rule-based logic, machine learning signals, and LLM-based reasoning to ensure both performance and explainability.",
+        "Designed an agent-based AI architecture with specialized agents for search, analysis, and generation, coordinated through a Human-in-the-Loop validation process.",
+        "Implemented semantic matching using vector search and reranking techniques to improve relevance and accuracy of results.",
+        "Orchestrated workflows using n8n to automate data processing and AI pipelines.",
+        "Deployed the system on cloud infrastructure with a modular and scalable architecture."
+    ],
+    "skills": [
+        "NLP",
+        "Google Cloud Platform (GCP)",
+        "n8n",
+        "Vector Databases",
+        "Large Language Models (LLMs)",
+        "Graph Embeddings",
+        "Agentic AI Development",
+        "Data Engineering",
+        "Web Scraping",
+        "AI Orchestration"
+    ]
+    },
+    {
+    "title":"Software Engineer Intern (Full Stack Developer Intern - Angular / Laravel)",
+    "start_date": "2025-05",
+    "end_date": "2025-08",
+    "duration_months": 3,
+    "description": "Student Extranet Platform",
+    "summary": "contributed to the development of the student extranet for the private faculty ITECH, working on both the front-end and back-end.",
+    "key_contributions": [
+        "Designed and implemented an internal messaging system to streamline communication.",
+        "Developed a customized chatbot to improve student support and interactivity.",
+        "Built and integrated additional student-focused modules to enhance the userexperience.",
+        "Contributed to the API layer and produced Swagger documentation for clear and standardized integration."
+    ],
+    "skills": [
+        "Angular",
+        "Laravel",
+        "JSON Web Token (JWT)",
+        "swagger",
+        "REST APIs",
+        "Chatbot Development",
+        "Full-Stack Development"
+    ]
+    },
+    {
+    "title":"Software Engineer Intern –Final Year Project (PFA)",
+    "start_date": "2024-12",
+    "end_date": "2025-04",
+    "duration_months": 5,
+
+    "description": "License Key Generation and Validation System",
+    "summary": "Developed a secure system for software activation key management to control access, duration, and validity of licensed software.",
+    "key_contributions": [
+        "Designed and implemented a license key generator with unique activation logic for each user.",
+        "Built a validation module to verify license status, duration, and usage rights before enabling software access.",
+        "Created a management dashboard for administrators to generate, monitor, and revoke activation keys.",
+        "Integrated encryption techniques to ensure the integrity and confidentiality of license data.",
+        "Simulated real-world use cases of licensing in distributed software systems.",
+        "Focused on security, reliability, and usability for both developers and end-users."
+    ],
+    "skills": [
+        "Software Licensing",
+        "Cryptography",
+        "Django",
+        "hashing",
+        "Information Security"
+    ]
+    },
+    {
+    "title":"Intern",
+    "start_date": "2024-05",
+    "end_date": "2024-08",
+    "duration_months": 5,
+
+    "description": "𝙍𝙚𝙨𝙪𝙢𝙚 𝘾𝙡𝙖𝙨𝙨𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙮𝙨𝙩𝙚𝙢 𝙪𝙨𝙞𝙣𝙜 𝘼𝙄 & 𝙉𝙇𝙋",
+    "summary": "Built an intelligent system to automatically predict the professional category of resumes using Natural Language Processing (NLP) and Machine Learning techniques.",
+    "key_contributions": [
+        "Designed and trained a classification model using algorithms like KNeighborsClassifier and OneVsRestClassifier on resume datasets.",
+        "Preprocessed text data with regular expressions, TF-IDF vectorization, and NLTK for effective feature extraction.",
+        "Implemented label encoding and managed model evaluation with accuracy scoring and optimization.",
+        "Developed a Streamlit web app that allows users to upload resumes and get instant category predictions.",
+        "Integrated file parsing, text cleaning, and model deployment using pickle, os, and re.",
+        "Gained experience in data preprocessing, ML pipeline design, and AI-based application development.",
+        "Addressed performance issues related to large datasets and adapted deployment strategies in cloud environments (Google Colab & Kaggle)."
+    ],
+    "skills": [
     "NLP",
-    "Google Cloud Platform (GCP)",
-    "n8n",
-    "Vector Databases",
-    "Large Language Models (LLMs)",
-    "Graph Embeddings",
-    "Agentic AI Development",
-    "Data Engineering",
-    "Web Scraping",
-    "AI Orchestration"
+    "Pycharm",
+    "docker",
+    "Machine Learning",
+    "Anaconda",
+    "Python (Programming Language)",
+    "Flask",
+    "Data Analysis",
+    "Data Modeling"
+    ]
+    }
   ]
 }
