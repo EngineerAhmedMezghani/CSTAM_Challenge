@@ -1,0 +1,89 @@
+{
+  "title": "Data Engineer",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+      "title": "Data Engineer",
+      "start_date": "2026-02",
+      "end_date": null,
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Implemented Data Streams using Salesforce Data Cloud to ingest and unify customer data.",
+        "Leveraged Einstein Discovery to build a Unified Customer Profile (Customer 360 view).",
+        "Designed and implemented customer segmentation strategies within Data Cloud.",
+        "Developed an intelligent Loyalty Management program.",
+        "Designed a data-driven loyalty program based on the Unified Customer Profile, including points, tiers, rewards, and personalized offers, to manage private sales and enhance customer engagement."
+      ],
+      "skills": [
+        "Salesforce Data Cloud",
+        "Data Integration & Data Mapping",
+        "Data Modeling",
+        "Customer 360 (Unified Customer Profile)",
+        "KPI & Performance Tracking"
+      ]
+    },
+    {
+      "title": "AI Engineer",
+      "start_date": "2025-06",
+      "end_date": "2025-08",
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Developed a RAG (Retrieval-Augmented Generation) assistant to answer questions from internal documents (PDF and multiple file formats).",
+        "Built a full-stack solution using FastAPI, React, LangChain, and a vector database.",
+        "Integrated Ollama to run LLaMA models locally for secure LLM inference.",
+        "Implemented multi-format document ingestion, real-time vector indexing, source citation, and user feedback tracking."
+      ],
+      "skills": [
+        "Retrieval-Augmented Generation (RAG)",
+        "Natural Language Processing (NLP)",
+        "FastAPI",
+        "Python",
+        "Large Language Models (LLM)"
+      ]
+    },
+    {
+      "title": "Data Engineer",
+      "start_date": "2024-06",
+      "end_date": "2024-07",
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "design, configure, and optimize an ELK (Elasticsearch, Logstash, and Kibana) cluster for monitoring tenant logs"
+      ],
+      "skills": [
+        "Elastic Stack (ELK)",
+        "Extract, Transform, Load (ETL)",
+        "Data Visualization",
+        "Linux"
+      ]
+    }
+  ],
+  "additional_technical_expertise": [
+    "Big Data",
+    "Distributed Systems",
+    "Scalable Data Architectures",
+    "Data Pipelines",
+    "Real-Time Data Processing",
+    "Batch Processing",
+    "ELK",
+    "Log Monitoring",
+    "Hadoop Ecosystem",
+    "Data Integration",
+    "Orchestration",
+    "Automation",
+    "Cloud Technologies",
+    "Analytics",
+    "Artificial Intelligence",
+    "Business Intelligence"
+  ],
+  "education": {
+    "institution": "Faculté des Sciences de Sfax",
+    "field": "Data Engineering"
+  }
+}
