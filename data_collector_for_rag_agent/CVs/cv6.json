@@ -1,0 +1,218 @@
+{
+  "title": "Senior Data Engineer | Data Engineering | ETL & Data Pipelines | Cloud & Big Data",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+      "title": "Large-Scale Data Migration",
+      "start_date": null,
+      "end_date": null,
+      "description": "Data migration project involving more than 200 million records across systems with zero downtime.",
+      "summary": "Designed and delivered a high-volume data migration with a focus on availability and reliability.",
+      "key_contributions": [
+        "Migrated more than 200 million records across systems with zero downtime.",
+        "Applied data engineering practices to maintain data consistency and service availability."
+      ],
+      "skills": [
+        "Data Migration",
+        "ETL",
+        "SQL",
+        "Data Quality",
+        "Data Engineering"
+      ]
+    },
+    {
+      "title": "Healthcare Data Optimization and Reporting Automation",
+      "start_date": null,
+      "end_date": null,
+      "description": "Healthcare data projects focused on query optimization and automated reporting.",
+      "summary": "Improved data access performance and reduced manual reporting effort through automation.",
+      "key_contributions": [
+        "Reduced query execution time by 70% in a healthcare data project.",
+        "Reduced manual reporting effort by 50% through reporting automation using Power Automate, Python, Pandas, and Alteryx."
+      ],
+      "skills": [
+        "Python",
+        "Pandas",
+        "SQL",
+        "Power Automate",
+        "Alteryx",
+        "Query Optimization"
+      ]
+    },
+    {
+      "title": "Real-Time Analytics and Streaming",
+      "start_date": null,
+      "end_date": null,
+      "description": "Real-time analytics solution for e-commerce data and operational insights.",
+      "summary": "Built streaming-oriented data solutions to support faster decisions and improve business performance.",
+      "key_contributions": [
+        "Implemented real-time analytics for e-commerce data, contributing to a reported 20% increase in conversion rates.",
+        "Worked with streaming and large-scale data processing technologies."
+      ],
+      "skills": [
+        "Kafka",
+        "Spark Streaming",
+        "Apache Spark",
+        "Real-Time Data Processing",
+        "Big Data"
+      ]
+    },
+    {
+      "title": "Business Intelligence Dashboards",
+      "start_date": null,
+      "end_date": null,
+      "description": "Business intelligence and data visualization projects for operational and retail analytics.",
+      "summary": "Delivered dashboards and analytical solutions that supported faster business decision-making.",
+      "key_contributions": [
+        "Developed retail data visualizations contributing to 40% faster decision making.",
+        "Built a BI dashboard for Sano Living associated with a reported 25% increase in operational efficiency.",
+        "Worked with Power BI, Tableau, Looker, QuickSight, Looker Studio, and Metabase."
+      ],
+      "skills": [
+        "Power BI",
+        "Tableau",
+        "Looker",
+        "QuickSight",
+        "Metabase",
+        "Data Visualization",
+        "Business Intelligence"
+      ]
+    },
+    {
+      "title": "Sports Data Platform and API Integration",
+      "start_date": null,
+      "end_date": null,
+      "description": "Sports data platform integrating external APIs and structured data models.",
+      "summary": "Improved sports data retrieval and supported scalable analytics through API integration and data modeling.",
+      "key_contributions": [
+        "Integrated sports data APIs including FantasyData and SportsMonks API.",
+        "Improved data retrieval performance by a reported factor of five in an American sports database."
+      ],
+      "skills": [
+        "API Integration",
+        "SQL",
+        "Data Modeling",
+        "Star Schema",
+        "Data Warehousing"
+      ]
+    },
+    {
+      "title": "Fraud Detection Data Platform",
+      "start_date": null,
+      "end_date": null,
+      "description": "FinTech database project supporting fraud detection analytics.",
+      "summary": "Prepared and optimized data foundations for fraud detection and analytical workflows.",
+      "key_contributions": [
+        "Contributed to a reported 90% improvement in fraud detection accuracy through data platform work."
+      ],
+      "skills": [
+        "FinTech Data",
+        "Data Quality",
+        "SQL",
+        "Analytics",
+        "Data Platforms"
+      ]
+    },
+    {
+      "title": "Logistics Inventory Automation",
+      "start_date": null,
+      "end_date": null,
+      "description": "Logistics automation project focused on inventory data and operational accuracy.",
+      "summary": "Automated inventory-related workflows to reduce operational errors.",
+      "key_contributions": [
+        "Delivered logistics automation associated with a reported 60% reduction in inventory errors.",
+        "Applied automation and data processing to operational workflows."
+      ],
+      "skills": [
+        "Automation",
+        "Python",
+        "Data Pipelines",
+        "Data Quality",
+        "Operational Analytics"
+      ]
+    },
+    {
+      "title": "Full-Stack and Web Development Foundation",
+      "start_date": "2019-06",
+      "end_date": "2019-08",
+      "description": "Early-career web development experience at OliveSoft, representing the software engineering foundation for the later evolution toward Data Engineering.",
+      "summary": "Developed web applications and websites using full-stack technologies before specializing in Data Engineering.",
+      "key_contributions": [
+        "Developed the OliveSoft.fr website during an internship.",
+        "Built e-commerce websites and websites for organizations and businesses.",
+        "Worked with MEAN Stack, PHP, Angular, Node.js, Spring Boot, WordPress, and PrestaShop.",
+        "Delivered Git/GitHub and PHP workshops as a trainer within the IEEE Computer Society ENIS Student Branch Chapter."
+      ],
+      "skills": [
+        "MEAN Stack",
+        "PHP",
+        "Angular",
+        "Node.js",
+        "Java",
+        "Spring Boot",
+        "WordPress",
+        "Git",
+        "GitHub"
+      ]
+    }
+  ],
+  "additional_technical_expertise": [
+    "Python",
+    "Pandas",
+    "SQL",
+    "Apache Spark",
+    "Spark Streaming",
+    "Airflow",
+    "Airbyte",
+    "dbt",
+    "Kafka",
+    "Hadoop",
+    "AWS",
+    "AWS Glue",
+    "Amazon S3",
+    "AWS Lambda",
+    "GCP",
+    "Azure",
+    "BigQuery",
+    "Snowflake",
+    "Amazon Redshift",
+    "Databricks",
+    "PostgreSQL",
+    "MySQL",
+    "Oracle",
+    "SQL Server",
+    "MongoDB",
+    "Data Warehousing",
+    "Star Schema",
+    "Snowflake Schema",
+    "Dimensional Modeling",
+    "Data Vault",
+    "Data Pipelines",
+    "ETL",
+    "Data Quality",
+    "Data Integration",
+    "Distributed Systems",
+    "Scalable Data Architectures",
+    "Power BI",
+    "Tableau",
+    "Looker",
+    "Metabase",
+    "DAX",
+    "Power Query M",
+    "Business Intelligence",
+    "Automation",
+    "APIs",
+    "Leadership",
+    "Organization",
+    "Communication",
+    "Full-Stack Web Development"
+  ],
+  "education": {
+    "institution": "National Engineering School of Sfax / Université de Sfax",
+    "field": "Computer Science Engineering"
+  }
+}
