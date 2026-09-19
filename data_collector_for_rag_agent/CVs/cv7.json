@@ -1,0 +1,110 @@
+{
+  "title": "SALESFORCE CONSULTANT | 2X SALESFORCE CERTIFIED | DATA ENGINEER | DATA INTEGRATION DEVELOPER",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+      "title": "Data and Salesforce engineer",
+      "start_date": "2023-11",
+      "end_date": null,
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Implemented Data Streams using Salesforce Data Cloud to ingest and unify customer data.",
+        "Leveraged Einstein Discovery to build a Unified Customer Profile (Customer 360 view).",
+        "Designed and implemented customer segmentation strategies within Data Cloud.",
+        "Developed an intelligent Loyalty Management program.",
+        "Designed a data-driven loyalty program based on the Unified Customer Profile, including points, tiers, rewards, and personalized offers, to manage private sales and enhance customer engagement."
+      ],
+      "skills": [
+        "Talend",
+        "Google Cloud Platform (GCP)",
+        "Datadog",
+        "Salesforce Commerce Cloud (SFCC)",
+        "Cegid",
+        "Klaviyo",
+        "Java",
+        "SQL",
+        "API REST",
+        "JIRA",
+        "Confluence",
+        "Salesforce",
+        "Salesforce Object Query Language (SOQL)",
+        "Gestion de la relation client (CRM)",
+        "order management system",
+        "Programmation Apex",
+        "Salesforce Sales Cloud",
+        "Salesforce Lightning",
+        "Administration Salesforce.com",
+        "Retail",
+        "Salesforce Data Cloud",
+        "Data Integration & Data Mapping",
+        "Data Modeling",
+        "Customer 360 (Unified Customer Profile)",
+        "KPI & Performance Tracking"
+      ]
+    },
+    {
+      "title": "Data engineer intern",
+      "start_date": "2023-02",
+      "end_date": "2023-08",
+      "description": null,
+      "summary": null,
+      "key_contributions": [],
+      "skills": [
+        "Elastic",
+        "Query dsl",
+        "Data",
+        "Elastic Stack (ELK)",
+        "Kibana",
+        "Gestion de logs",
+        "Python"
+      ]
+    },
+    {
+      "title": "Data science engineer",
+      "start_date": "2022-10",
+      "end_date": "2022-12",
+      "description": null,
+      "summary": null,
+      "key_contributions": [],
+      "skills": [
+        "Apprentissage automatique",
+        "PyTorch",
+        "Python",
+        "Vision par ordinateur"
+      ]
+    },
+    {
+      "title": "Data Science Intern",
+      "start_date": "2022-07",
+      "end_date": "2022-09",
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Design, develop, test, and maintain AI / ML solutions to meet business needs.",
+        "Perform common feature engineering activities for machine learning.",
+        "Post standard data science statistics for models.",
+        "Develop and maintain artificial intelligence components.",
+        "Design, implement and support machine learning algorithms.",
+        "Build a content based fashion recommendation system based on images."
+      ],
+      "skills": [
+        "AI",
+        "Apprentissage automatique",
+        "Scrapping",
+        "Analyse de données",
+        "Python",
+        "Systèmes de recommandation"
+      ]
+    }
+  ],
+  "additional_technical_expertise": [],
+  "education": {
+    "institution": "SUPCOM",
+    "field": "Data Engineering"
+  }
+}
