@@ -1,0 +1,94 @@
+{
+  "title": "Aspiring Data Engineer | x3 GCP Certified | Transforming data into scalable, reliable solutions",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+      "title": "Data Engineer",
+      "start_date": "2024-10",
+      "end_date": null,
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Contributed to the industrialization and automation of the data platform, using GCP, Python, dbt, Terraform, Airbyte, Cloud Run, and API integrations.",
+        "Designed and migrated 15+ data sources and tables to a new BigQuery-based architecture, improving data consistency and scalability.",
+        "Built end-to-end data flows, models and pipelines for educational journeys, learning paths, pedagogical interactions, customer data, and marketing analytics.",
+        "Optimized production dbt and BigQuery workloads, resolving critical pipeline issues and reducing BigQuery scan costs by 50%.",
+        "Designed and deployed a customer data deduplication and synchronization pipeline with Braze, ensuring reliable data quality and continuity for customer engagement use cases.",
+        "Built a Braze event ingestion pipeline and developed the data models powering 4+ marketing performance dashboards.",
+        "Developed a B2B contract churn-risk scoring solution, combining data modeling, predictive analysis, and dashboards to reduce manual analysis from several days to a few hours per week.",
+        "Developed +3 B2B operational and management dashboards covering team performance and monthly activity, combining detailed data analysis and business KPIs to streamline operations, improve data reliability, and support informed decision-making.",
+        "Collaborated with business, BI, and technical teams to translate business requirements into reliable, scalable data solutions."
+      ],
+      "skills": [
+        "Data Engineering",
+        "Data Build Tool (DBT)",
+        "Google Cloud Platform (GCP)",
+        "Google BigQuery",
+        "Airbyte",
+        "Braze",
+        "Data Architecture",
+        "looker",
+        "Terraform",
+        "Git"
+      ]
+    },
+    {
+      "title": "DevOps Engineer intern",
+      "start_date": "2023-06",
+      "end_date": "2023-08",
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Conducting research and experimentation in dockerizing remote engines to enhance scalability and ensure isolation of executed jobs. ",
+        "Containerizing Talend jobs using docker to improve consistency across different environments.",
+        "Deploying containerized jobs using helm charts in a kubernetes cluster."
+      ],
+      "skills": [
+        "Kubernetes",
+        "docker",
+        "Talend",
+        "Azure DevOps",
+        "Git",
+        "Scrum",
+        "Agile Methodologies",
+        "Helm"
+      ]
+    },
+    {
+      "title": "Wordpress Developer",
+      "start_date": "2023-01",
+      "end_date": "2023-06",
+      "description": null,
+      "summary": null,
+      "key_contributions": [
+        "Responsible for performing modifications and maintenance on the company’s website to ensure optimal performance and user experience. Tasks included updating content, fixing bugs, implementing new features, and ensuring website functionality across all devices and browsers."
+      ],
+      "skills": [
+        "WordPress",
+        "PHP",
+        "Search Engine Optimization (SEO)"
+      ]
+    },
+    {
+      "title": "Mobile Application Developer",
+      "start_date": "2022-06",
+      "end_date": "2022-07",
+      "description": null,
+      "summary": null,
+      "key_contributions": [],
+      "skills": [
+        "Flutter",
+        "Dart"
+      ]
+    }
+  ],
+  "additional_technical_expertise": [],
+  "education": {
+    "institution": "Ecole Nationale d'Ingénieurs de Sfax",
+    "field": "Data Engineering"
+  }
+}
