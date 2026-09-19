@@ -12,13 +12,7 @@
       "end_date": null,
       "description": null,
       "summary": null,
-      "key_contributions": [
-        "Implemented Data Streams using Salesforce Data Cloud to ingest and unify customer data.",
-        "Leveraged Einstein Discovery to build a Unified Customer Profile (Customer 360 view).",
-        "Designed and implemented customer segmentation strategies within Data Cloud.",
-        "Developed an intelligent Loyalty Management program.",
-        "Designed a data-driven loyalty program based on the Unified Customer Profile, including points, tiers, rewards, and personalized offers, to manage private sales and enhance customer engagement."
-      ],
+      "key_contributions": [],
       "skills": [
         "Talend",
         "Google Cloud Platform (GCP)",
