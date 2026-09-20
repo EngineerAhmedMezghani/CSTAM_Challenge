@@ -1,0 +1,23 @@
+{
+  "client": "Jacquemus",
+  "sector_inferred": "Fashion (logo file named 'Jacqemus' on site)",
+  "confirmed_projects": [],
+  "possibly_related_case_studies": [
+    {
+      "id": "proj-new-fashion-crm",
+      "title": "New Fashion CRM Platform (rebuild of a Customer Data Platform)",
+      "match_basis": "sector only - unverified"
+    },
+    {
+      "id": "proj-retail-crm-gcp",
+      "title": "Unifying Customer Intelligence for Retail & E-Commerce Growth",
+      "match_basis": "sector only - unverified"
+    },
+    {
+      "id": "proj-counterfeit-poc",
+      "title": "Counterfeit and Grey Market Detection on Social and Second-hand Platforms (AI PoC)",
+      "match_basis": "sector only - unverified"
+    }
+  ],
+  "status": "no confirmed project - sector-matched candidates only"
+}
