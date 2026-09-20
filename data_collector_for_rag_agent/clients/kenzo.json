@@ -19,5 +19,7 @@
       "match_basis": "sector only - unverified"
     }
   ],
-  "status": "no confirmed project - sector-matched candidates only"
+  "status": "no confirmed project - sector-matched candidates only",
+  "domain": "Fashion / Retail",
+  "project_idea": "Retail data platform, customer segmentation, and BI dashboards to improve omnichannel marketing performance."
 }
