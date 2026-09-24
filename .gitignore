@@ -1,2 +1,5 @@
 _my_download.txt
 venv
+docker2/docker-compose.yml
+.env
+__pycache__/

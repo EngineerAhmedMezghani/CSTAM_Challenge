@@ -14,8 +14,9 @@ class Settings(BaseSettings):
     ]
     http_timeout: float = 20.0
     max_response_size: int = 5_000_000
+    groq_api_key: str | None = None
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore", case_sensitive=False)
+    model_config = SettingsConfigDict(env_file=(".env", "../.env"), extra="ignore", case_sensitive=False)
 
     @field_validator("backend_cors_origins", mode="before")
     @classmethod

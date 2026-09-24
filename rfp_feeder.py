@@ -10,10 +10,10 @@ from groq import Groq
 # PowerShell:
 #   $env:GROQ_API_KEY="your_api_key"
 
-API_KEY = "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"
+API_KEY = os.getenv("GROQ_API_KEY")
 
 if not API_KEY:
-    raise ValueError("GROQ_API_KEY is not set.")
+    raise ValueError("GROQ_API_KEY environment variable is required.")
 
 # Groq model
 MODEL = "openai/gpt-oss-120b"
