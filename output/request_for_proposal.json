@@ -1,0 +1,110 @@
+{
+    "title": "Request for Proposal – Mobile Application Redesign",
+    "issuing_organization": "GlobalTech Services Consortium",
+    "project_type": "Mobile Application Redesign",
+    "executive_summary": "GlobalTech Services Consortium seeks qualified vendors to redesign its existing cross‑platform mobile application (iOS & Android) to improve user engagement, performance, accessibility, and brand consistency. The project will involve a complete UI/UX overhaul, migration to a modern technology stack, integration with back‑end APIs, and delivery of a maintainable codebase. Proposals are due by 2026‑10‑15. Selected vendor will commence work in early November 2026 with a target go‑live date of 2027‑04‑30.",
+    "project_objectives": [
+        "Increase Net Promoter Score (NPS) for the mobile app from 32 to 55 within six months of launch",
+        "Reduce average app load time to under 2 seconds on 4G networks",
+        "Achieve WCAG 2.2 AA compliance for accessibility",
+        "Implement a modular architecture that supports future feature extensions without major re‑work",
+        "Standardize analytics and event tracking across both platforms"
+    ],
+    "scope_of_work": [
+        "Conduct stakeholder interviews and user research to validate redesign direction",
+        "Produce high‑fidelity wireframes, interactive prototypes, and design system assets",
+        "Develop native iOS (Swift) and Android (Kotlin) applications using a shared codebase where feasible (e.g., Kotlin Multiplatform or Flutter)",
+        "Migrate existing API integrations and implement new secure authentication (OAuth 2.0/OpenID Connect)",
+        "Implement in‑app analytics (Firebase, Mixpanel) and push‑notification infrastructure",
+        "Perform comprehensive QA, performance testing, and accessibility testing",
+        "Provide documentation, source code repository access, and knowledge‑transfer workshops",
+        "Support post‑launch bug‑fixes and performance tuning for a 90‑day warranty period"
+    ],
+    "functional_requirements": [
+        "User Registration & Login with email, social (Google, Apple) and SSO options",
+        "Personalized Dashboard displaying key metrics and notifications",
+        "Push Notification preferences and in‑app messaging",
+        "Search & filter functionality for core data sets",
+        "Offline mode with data sync when connectivity is restored",
+        "Role‑based access control for admin, manager, and end‑user roles",
+        "In‑app feedback and rating mechanism",
+        "Multi‑language support (English, Spanish, French)"
+    ],
+    "technical_requirements": [
+        "Target OS versions: iOS 15+ and Android 9 (API 28)+",
+        "Use Swift 5.8 for iOS and Kotlin 1.9 for Android",
+        "Adopt a shared UI layer via Flutter 3.13 or Kotlin Multiplatform as optional",
+        "Integrate with existing RESTful APIs (JSON, OAuth2) and support GraphQL where needed",
+        "Implement CI/CD pipelines using GitHub Actions or Azure DevOps",
+        "Code must pass SonarQube quality gate (≥ 90 % coverage, no critical bugs)",
+        "Data encryption at rest and in transit (AES‑256, TLS 1.3)",
+        "Comply with GDPR and CCPA privacy requirements"
+    ],
+    "design_requirements": [
+        "Adopt GlobalTech brand palette, typography, and iconography",
+        "Create a responsive design system with component library for reuse",
+        "Ensure WCAG 2.2 AA compliance (contrast ratios, focus order, screen‑reader labels)",
+        "Provide motion design guidelines (duration ≤ 300 ms for transitions)",
+        "Deliver assets in SVG, PNG (2x/3x) and Sketch/Figma source files",
+        "Include dark‑mode version for both platforms"
+    ],
+    "deliverables": [
+        "Project kickoff & discovery report (PDF)",
+        "User research findings and personas",
+        "Design system documentation and component library",
+        "High‑fidelity UI mockups for all screens (Figma)",
+        "Interactive prototype (Figma or InVision)",
+        "Source code repository (Git) with branch strategy documentation",
+        "Build artifacts for iOS (TestFlight) and Android (Internal Play Store)",
+        "Automated test suites (unit, UI, integration)",
+        "Technical documentation (architecture diagram, API contracts)",
+        "Knowledge‑transfer workshop deck and recorded session",
+        "Post‑launch warranty bug‑fix log and final acceptance report"
+    ],
+    "project_timeline": [
+        "2026-10-15: Proposal submission deadline",
+        "2026-10-22: Vendor selection notification",
+        "2026-11-01: Kick‑off workshop",
+        "2026-11-15 – 2027-01-15: Discovery, research & design iterations",
+        "2027-01-20 – 2027-03-10: Development sprints (4 two‑week sprints)",
+        "2027-03-15 – 2027-04-05: QA, performance & accessibility testing",
+        "2027-04-10: User acceptance testing (UAT) with pilot group",
+        "2027-04-30: Production release to App Store & Google Play",
+        "2027-07-30: End of 90‑day warranty period"
+    ],
+    "submission_guidelines": [
+        "All proposals must be submitted in PDF format via the secure portal (https://rfp.globaltech.org) no later than 23:59 UTC on 2026‑10‑15",
+        "Provide a cover letter signed by an authorized representative",
+        "Include company profile, relevant experience (minimum 3 similar mobile redesign projects), and CVs of key personnel",
+        "Detail the proposed methodology, project schedule, and resource allocation",
+        "Provide a cost breakdown (labour, licences, third‑party services, travel) and total fixed‑price offer",
+        "Attach references with contact information for at least two recent clients",
+        "Declare any conflicts of interest or existing relationships with GlobalTech",
+        "All monetary values must be in USD",
+        "Late submissions will be disqualified"
+    ],
+    "vendor_evaluation_criteria": [
+        "Understanding of project scope and objectives (15 %)",
+        "Proposed technical solution & compliance with requirements (25 %)",
+        "Design approach and portfolio relevance (20 %)",
+        "Project team qualifications and experience (15 %)",
+        "Cost competitiveness and pricing transparency (15 %)",
+        "References and past performance (5 %)",
+        "Compliance with submission guidelines (5 %)"
+    ],
+    "budget_requirements": [
+        "Total fixed‑price budget not to exceed USD 350,000 inclusive of all taxes, licences, and travel",
+        "Payment schedule: 10 % upon contract signing, 30 % upon delivery of design assets, 40 % upon acceptance of beta release, 20 % after final sign‑off and warranty commencement",
+        "Any out‑of‑scope work will be billed on a time‑and‑materials basis (USD 150 / hour)"
+    ],
+    "terms_and_conditions": [
+        "All deliverables become the exclusive property of GlobalTech upon full payment",
+        "Vendor must maintain confidentiality of all proprietary information (NDA signed prior to award)",
+        "Compliance with applicable laws, regulations, and export controls is mandatory",
+        "Vendor shall carry professional liability insurance of at least USD 1 million",
+        "Intellectual property: vendor grants worldwide, perpetual, royalty‑free license for any pre‑existing components incorporated into the solution",
+        "Termination: either party may terminate with 30 days written notice; fees for completed milestones remain payable",
+        "Force majeure clause applies as per standard GlobalTech contract template",
+        "Dispute resolution shall be governed by the laws of the State of New York, USA"
+    ]
+}

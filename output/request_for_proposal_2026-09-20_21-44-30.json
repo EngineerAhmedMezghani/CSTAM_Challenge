@@ -1,0 +1,110 @@
+{
+    "title": "Request for Proposal – Mobile Application Redesign",
+    "issuing_organization": "GlobalTech Solutions (Fictional)",
+    "project_type": "Mobile Application Redesign",
+    "executive_summary": "GlobalTech Solutions seeks proposals from qualified vendors to redesign its existing customer‑facing mobile application (iOS and Android). The redesign will modernize the user experience, improve performance, add new features, and align the app with the organization’s brand and security standards. The selected vendor will work closely with GlobalTech’s product, design, and IT teams to deliver a high‑quality, scalable solution within a 24‑week timeframe.",
+    "project_objectives": [
+        "Enhance user experience and visual design to increase engagement and retention",
+        "Improve app performance (load time <2 seconds, crash rate <0.5%)",
+        "Add new self‑service features such as in‑app support chat, push notifications, and biometric login",
+        "Ensure compliance with GDPR, CCPA, and industry‑specific security standards",
+        "Create a reusable component library for future enhancements"
+    ],
+    "scope_of_work": [
+        "Conduct discovery workshops and user research to validate redesign direction",
+        "Develop high‑fidelity UI/UX prototypes and obtain stakeholder approval",
+        "Implement front‑end development for iOS (Swift) and Android (Kotlin) using a shared architecture (e.g., Flutter or React Native)",
+        "Integrate with existing back‑end APIs and implement new API endpoints where required",
+        "Perform security hardening, accessibility compliance (WCAG 2.1 AA), and performance optimization",
+        "Conduct unit, integration, UI, and regression testing across devices",
+        "Provide documentation, source code repository setup, and knowledge‑transfer sessions",
+        "Offer post‑launch support and bug‑fix warranty for 90 days"
+    ],
+    "functional_requirements": [
+        "User registration/login with email, social (Google, Apple) and biometric options",
+        "Personalized dashboard displaying account summary, recent activity, and recommended actions",
+        "In‑app messaging center with push notifications",
+        "Self‑service support chat integrated with third‑party chatbot",
+        "Secure document upload/download (PDF, images)",
+        "Search functionality with filters and sorting",
+        "Settings page for language, theme (light/dark), and notification preferences",
+        "Offline mode for read‑only content with sync on reconnection"
+    ],
+    "technical_requirements": [
+        "Target platforms: iOS 14+ and Android 9+",
+        "Development framework: Flutter 3.x or React Native 0.72 (vendor to propose)",
+        "State management: Bloc/Cubit (Flutter) or Redux (React Native)",
+        "API communication via RESTful JSON over HTTPS with OAuth 2.0",
+        "Backend integration with existing GraphQL endpoints where applicable",
+        "Automated CI/CD pipeline using GitHub Actions or Azure DevOps",
+        "Static code analysis (SonarQube) and security scanning (OWASP Dependency‑Check)",
+        "Support for Apple App Store and Google Play Store submission guidelines",
+        "Analytics integration with Firebase Analytics and custom event tracking"
+    ],
+    "design_requirements": [
+        "Adopt GlobalTech brand guidelines (color palette, typography, iconography)",
+        "Design system with reusable components and style guide",
+        "Responsive layouts for phone (5‑7\" screens) and tablet (7‑10\" screens)",
+        "Accessibility: minimum contrast ratios, screen‑reader support, adjustable text size",
+        "Prototype delivery in Figma with interactive flows",
+        "Provide assets in SVG, PNG (2x/3x) and font files"
+    ],
+    "deliverables": [
+        "Discovery & research report (PDF)",
+        "User personas and journey maps",
+        "High‑fidelity UI mockups and interactive Figma prototype",
+        "Design system documentation (components, tokens)",
+        "Source code repository (Git) with branch strategy",
+        "Fully functional iOS and Android app binaries (IPA, AAB)",
+        "Automated test suites and test coverage report",
+        "CI/CD pipeline scripts and documentation",
+        "Security and performance test reports",
+        "User acceptance testing (UAT) sign‑off package",
+        "Post‑launch support plan and knowledge‑transfer materials"
+    ],
+    "project_timeline": [
+        "Week 1‑2: Kick‑off, discovery workshops, requirements validation",
+        "Week 3‑4: User research, personas, journey mapping",
+        "Week 5‑7: Wireframes and UI concepts, stakeholder review",
+        "Week 8‑10: High‑fidelity designs and design system creation",
+        "Week 11‑14: Development sprint 1 – core navigation, authentication, dashboard",
+        "Week 15‑17: Development sprint 2 – messaging, support chat, document handling",
+        "Week 18‑19: Development sprint 3 – settings, offline mode, analytics",
+        "Week 20‑21: Integration testing, security hardening, performance tuning",
+        "Week 22: UAT preparation and execution",
+        "Week 23: Bug fixing, final polish, app store submission",
+        "Week 24: Go‑live and 90‑day warranty start"
+    ],
+    "submission_guidelines": [
+        "Proposals must be submitted in PDF format via the GlobalTech procurement portal no later than 2026‑10‑31 17:00 GMT",
+        "Include a cover letter, vendor profile, relevant case studies (minimum 2), proposed team CVs, technical approach, project schedule, and cost breakdown",
+        "All pricing must be presented in USD and broken down by license, development effort, testing, and support",
+        "Provide a minimum of three (3) professional references with contact information",
+        "Electronic signatures are accepted; handwritten signatures are not required",
+        "Late submissions will be disqualified"
+    ],
+    "vendor_evaluation_criteria": [
+        "Understanding of requirements and proposed solution (20 %)",
+        "Relevant experience and case studies of mobile app redesigns (20 %)",
+        "Technical competence of proposed team (certifications, years of experience) (15 %)",
+        "Quality of design approach and adherence to UI/UX best practices (15 %)",
+        "Project schedule realism and resource allocation (10 %)",
+        "Cost competitiveness and pricing transparency (10 %)",
+        "Support model and warranty terms (5 %)",
+        "Reference checks and past client satisfaction (5 %)"
+    ],
+    "budget_requirements": [
+        "Total estimated budget: USD 250,000 ± 10 %",
+        "Breakdown: Discovery & design $45,000; Development $130,000; Testing $30,000; Deployment & App‑store fees $15,000; Post‑launch support (90 days) $30,000"
+    ],
+    "terms_and_conditions": [
+        "All deliverables become the sole property of GlobalTech Solutions upon full payment",
+        "Vendor must comply with GlobalTech’s Code of Conduct and Data Protection Policy",
+        "Confidentiality: Vendor shall sign a Non‑Disclosure Agreement prior to project start",
+        "Payments will be milestone‑based, net 30 days after invoice approval",
+        "Intellectual property: source code, designs, and documentation are licensed exclusively to GlobalTech",
+        "Vendor shall maintain insurance coverage (Professional Liability ≥ $1 M)",
+        "Any subcontractors must be pre‑approved in writing by GlobalTech",
+        "Dispute resolution governed by the laws of the State of New York, USA"
+    ]
+}
