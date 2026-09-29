@@ -1,0 +1,91 @@
+{
+  "title": "Data Engineer @OliveSoft",
+  "company": "OliveSoft",
+  "location": {
+    "city": "Sfax",
+    "country": "Tunisia"
+  },
+  "projects": [
+    {
+    "title":"Data Engineer",
+    "start_date": "2026-04",
+    "end_date": null,
+    "duration_months": null,
+    "description": null,
+    "summary": null,
+    "key_contributions": [],
+    "skills": []
+    },
+    {
+    "title":"Artificial Intelligence Engineering Intern",
+    "start_date": "2025-02",
+    "end_date": "2025-09",
+    "duration_months": 8,
+    "description": "Media generation models for digital marketing",
+    "summary": "contributed to the development of the student extranet for the private faculty ITECH, working on both the front-end and back-end.",
+    "key_contributions": [
+        "Developed advanced image and video generation pipelines using Diffusion models, featuring LoRA fine-tuning for product-specific customization.",
+        "Engineered controlled generation workflows and editing tools, including visual reference guidance, image stylization, high-resolution upscaling, text-guided inpainting/outpainting, and automated object removal.",
+        "Orchestrated an automated end-to-end video production system integrating multi-modal generation, AI-driven audio/speech synthesis, and automated video editing.",
+        "Integrated LLM-based prompt engineering and optimized inference with bitsandbytes quantization to improve generation quality and reduce memory usage.",
+        "Architected and deployed production-ready APIs using FastAPI, fully containerized with Docker for scalable AI solutions."
+    ],
+    "skills": [
+        "Generative AI",
+        "Diffusion Models",
+        "Image Generation",
+        "Image Inpainting",
+        "Video Generation",
+        "Low-Rank Adaptation (LoRA)",
+        "Quantization",
+        "VLM",
+        "Object Detection",
+        "Large Language Models (LLM)",
+        "FastAPI",
+        "Docker",
+        "Replicate",
+        "Hugging Face",
+        "Scrum",
+        "Jira",
+        "Confluence"
+    ]
+    },
+    {
+    "title":"Artificial Intelligence Engineering Intern",
+    "start_date": "2024-06",
+    "end_date": "2024-08",
+    "duration_months": 3,
+
+    "description": "Realistic High Resolution Satellite Images Generation via Generative Al",
+    "summary": null,
+    "key_contributions": [
+        "Developed Transformer-based and Diffusion models to generate high-resolution satellite imagery for olive cultivation.",
+        "Used the DART model to simulate datasets with varying spatial, spectral, and temporal resolutions.",
+        "Performed comparative benchmarking to optimize model efficiency, achieving an error rate below 5%."
+    ],
+    "skills": [
+        "Diffusion Models",
+        "Transformer Models",
+        "Satellite Image Processing",
+        "DART (Discrete Anisotropic Radiative Transfer) Model"
+    ]
+    },
+    {
+    "title":"Summer Intern",
+    "start_date": "2023-06",
+    "end_date": "2023-07",
+    "duration_months": 5,
+
+    "description": "Enhancing Text Mining Capabilities using Composite AI-Rules in OpenText Magellan.",
+    "summary": null,
+    "key_contributions": [
+        "Designed Composite AI-Rules in OpenText Magellan to automate data extraction from contracts, replacing manual processes.",
+        "Developed advanced text mining logic to identify complex patterns and improve extraction accuracy in unstructured documents."
+    ],
+    "skills": [
+    "Natural Language Processing (NLP)",
+    "OpenText Magellan Text Mining Studio"
+    ]
+    }
+  ]
+}
