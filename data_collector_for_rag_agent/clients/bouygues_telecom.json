@@ -1,0 +1,18 @@
+{
+  "client": "Bouygues Telecom",
+  "sector_inferred": "Telecommunications",
+  "confirmed_projects": [
+    {
+      "id": "proj-bouygues-architecture",
+      "title": "Consulting mission at Bouygues Telecom (omnichannel architecture)",
+      "domain": "Telecom / Architecture",
+      "solution": "An OliveSoft consultant worked about 1 year on a mission at Bouygues Telecom, with omnichannel architecture expertise, in an architects team.",
+      "confidence": "low - only a LinkedIn recommendation of an OliveSoft consultant; project details not public",
+      "url": "https://www.linkedin.com/in/mohamed-kossentini-4bb3434/"
+    }
+  ],
+  "possibly_related_case_studies": [],
+  "status": "confirmed",
+  "domain": "Telecommunications / Architecture",
+  "project_idea": "Omnichannel architecture and customer journey integration across telecom channels, with enterprise data and application architecture support."
+}

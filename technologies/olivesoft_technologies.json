@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "entreprise": "OliveSoft",
+    "objet": "Étude des technologies utilisées par OliveSoft",
+    "date_collecte": "2026-09-20",
+    "site_principal": "https://www.olivesoft.fr/en",
+    "positionnement": "Your Data & AI Partner",
+    "implantations": ["Paris (France)", "Sfax (Tunisie)", "Dubai (EAU)"],
+    "methode": "Sources publiques : site officiel, offres d'emploi, profils LinkedIn de membres. Les niveaux de confiance indiquent la fiabilité de la source.",
+    "avertissement": "Un autre site (olivesoft.tech) décrit une entité similaire (dev logiciel, DevOps, UX) sans liste technique précise ; le lien avec olivesoft.fr n'est pas confirmé et n'est pas exploité ici."
+  },
+
+  "domaines_expertise": [
+    {
+      "domaine": "Data Integration",
+      "description": "Pipelines ETL/ELT, flux API, synchronisation temps réel ou batch, environnements on-premise, cloud ou hybrides.",
+      "technologies": [
+        { "nom": "Talend", "categorie": "ETL / intégration" },
+        { "nom": "SSIS (Microsoft)", "categorie": "ETL / intégration" },
+        { "nom": "MuleSoft", "categorie": "iPaaS / API management" },
+        { "nom": "Boomi", "categorie": "iPaaS" },
+        { "nom": "Workato", "categorie": "automatisation / iPaaS" },
+        { "nom": "n8n", "categorie": "automatisation de workflows" }
+      ],
+      "confiance": "haute",
+      "source": "https://www.olivesoft.fr/en/services"
+    },
+    {
+      "domaine": "BI & Dashboarding",
+      "description": "Modélisation de données, définition de KPI, couches sémantiques, tableaux de bord interactifs connectés à ERP, CRM, cloud et bases de données.",
+      "technologies": [
+        { "nom": "Power BI", "categorie": "BI" },
+        { "nom": "Tableau", "categorie": "BI" },
+        { "nom": "Qlik Sense", "categorie": "BI" },
+        { "nom": "Looker Studio (ex Google Data Studio)", "categorie": "BI" }
+      ],
+      "confiance": "haute",
+      "source": "https://www.olivesoft.fr/en/services"
+    },
+    {
+      "domaine": "AI Development",
+      "description": "Cycle de vie complet : idéation, préparation des données, modélisation, tests, déploiement, monitoring.",
+      "techniques": [
+        "Machine learning",
+        "Deep learning",
+        "NLP",
+        "Computer vision",
+        "IA générative"
+      ],
+      "cas_usage_cites": [
+        "Chatbot IA de guidage pour l'enregistrement de marques et brevets",
+        "Crawler intelligent de base de données pour détecter les entrées similaires",
+        "Tableaux de bord de prévision assistés par IA"
+      ],
+      "outils_nommes": [],
+      "confiance": "haute pour les techniques, aucun framework nommé publiquement",
+      "source": "https://www.olivesoft.fr/en/services"
+    },
+    {
+      "domaine": "Salesforce Ecosystem",
+      "description": "Implémentation, intégration API, automatisation de processus et gouvernance.",
+      "technologies": [
+        { "nom": "Sales Cloud", "categorie": "CRM" },
+        { "nom": "Service Cloud", "categorie": "CRM" },
+        { "nom": "Marketing Cloud", "categorie": "CRM" },
+        { "nom": "Commerce Cloud", "categorie": "CRM / e-commerce" },
+        { "nom": "Experience Cloud", "categorie": "CRM" },
+        { "nom": "CRM Analytics", "categorie": "analytique" },
+        { "nom": "Flow", "categorie": "automatisation Salesforce" },
+        { "nom": "Apex", "categorie": "langage Salesforce" },
+        { "nom": "Lightning", "categorie": "UI Salesforce" }
+      ],
+      "confiance": "haute",
+      "source": "https://www.olivesoft.fr/en/services"
+    },
+    {
+      "domaine": "Data Platform",
+      "description": "Data lakes, data warehouses, data marts sur cloud ou on-premise ; ingestion, stockage, catalogage, gouvernance.",
+      "technologies": [
+        { "nom": "Snowflake", "categorie": "data warehouse" },
+        { "nom": "Google Cloud Platform (GCP)", "categorie": "cloud" },
+        { "nom": "BigQuery", "categorie": "data warehouse (GCP)" },
+        { "nom": "Microsoft Azure", "categorie": "cloud" },
+        { "nom": "Databricks", "categorie": "data / lakehouse" },
+        { "nom": "Apache Kafka", "categorie": "streaming" }
+      ],
+      "confiance": "haute",
+      "source": "https://www.olivesoft.fr/en/services"
+    }
+  ],
+
+  "technologies_par_projet": [
+    {
+      "projet": "Système HRIS centralisé pour une multinationale",
+      "secteur": "RH",
+      "technologies": ["SAP SuccessFactors", "Talent Connect", "systèmes de paie locaux", "MuleSoft"],
+      "architecture": "Intégrations bidirectionnelles en temps réel",
+      "source": "https://www.olivesoft.fr/en/article/building-unified-hr-solution-seamless-employee-management"
+    },
+    {
+      "projet": "Écosystème CRM unifié pour un acteur retail / e-commerce",
+      "secteur": "Retail, e-commerce, mode",
+      "technologies": ["Google Cloud", "BigQuery", "ERP", "plateformes e-commerce, marketing et support"],
+      "architecture": "Source unique de vérité (single source of truth) pour la connaissance client",
+      "source": "https://www.olivesoft.fr/en/article/fragmented-data-growth-empowering-sales-data"
+    },
+    {
+      "projet": "Prévision et opérations pour un fournisseur de matières premières industrielles",
+      "secteur": "Industrie",
+      "technologies": ["Plateformes cloud", "ERP", "dashboards temps réel assistés par IA"],
+      "source": "https://www.olivesoft.fr/en/article/transforming-forecasting-ai-powered-dashboards-and-integration"
+    },
+    {
+      "projet": "Plateforme d'enregistrement marques et brevets pour une agence gouvernementale",
+      "secteur": "Secteur public / propriété intellectuelle",
+      "technologies": ["Chatbot IA", "crawler intelligent de base de données"],
+      "source": "https://www.olivesoft.fr/en/services"
+    }
+  ],
+
+  "indices_secondaires": [
+    {
+      "indice": "Offre d'emploi Data Engineer (Sfax) : mots-clés Talend, ETL, GCP, intégration de données ; MuleSoft mentionné ; pipelines évolutifs et tolérants aux pannes.",
+      "confiance": "moyenne à haute (cohérent avec le site)",
+      "source": "https://www.linkedin.com/jobs/view/3742679092/"
+    },
+    {
+      "indice": "Un ingénieur Data Flow mentionne la mise en place d'un DataLake en collaboration avec Zetta Spark et une certification Google Cloud.",
+      "confiance": "moyenne (profil personnel, projet non attribué explicitement à un client OliveSoft)",
+      "source": "https://www.linkedin.com/in/ahmed-lehyani/"
+    },
+    {
+      "indice": "Le fondateur cite dans son parcours (groupe SiFAST) une usine logicielle DevOps (Jenkins, Maven, Git, SonarQube, Nexus, Docker, OpenShift), du Java EE, Symfony, Node.js, Angular, React et Redmine. Il s'agit de son expérience passée, pas forcément de la stack actuelle d'OliveSoft.",
+      "confiance": "faible pour la stack actuelle",
+      "source": "https://fr.linkedin.com/in/amine-mzid"
+    },
+    {
+      "indice": "Le site olivesoft.fr est propulsé par Drupal 11.",
+      "confiance": "haute",
+      "source": "https://www.olivesoft.fr/en"
+    },
+    {
+      "indice": "Publications LinkedIn d'un dirigeant sur les plateformes RAG-as-a-Service : intérêt pour le RAG.",
+      "confiance": "faible (intérêt, pas usage confirmé)",
+      "source": "https://www.linkedin.com/in/marouenfakhfakh/"
+    }
+  ],
+
+  "synthese": {
+    "coeur_de_metier": "Intégration de données, BI, plateformes data cloud, écosystème Salesforce, IA appliquée",
+    "technologies_dominantes": [
+      "Talend", "MuleSoft", "GCP / BigQuery", "Snowflake", "Azure", "Databricks", "Kafka",
+      "Power BI", "Tableau", "Salesforce"
+    ],
+    "cloud_prefere": "GCP (mentionné dans les services, les offres d'emploi et un projet client)",
+    "secteurs_cibles": ["Retail", "E-commerce", "Luxe / mode", "Banque", "Énergie", "Télécoms", "Secteur public"],
+    "clients_visibles_sur_le_site": [
+      "BNP Paribas", "Bouygues Telecom", "BVLGARI", "CELINE", "COFIROUTE", "GIVENCHY",
+      "Groupe BPCE", "CISION", "Courrèges", "Intersport", "Jacquemus", "Kenzo", "Lefebvre",
+      "Lemaire", "Loewe", "Marc Jacobs", "MBPS", "Rimowa", "RTE", "Skill and you", "Timbu", "TotalEnergies"
+    ],
+    "lacunes": [
+      "Aucune stack IA précise (frameworks, LLM, MLOps) n'est publiée",
+      "Aucune information sur les langages de programmation utilisés en interne aujourd'hui",
+      "Les technologies par client sont rarement détaillées"
+    ]
+  },
+
+  "pistes_pour_la_suite": [
+    "Extraire les 4 articles Success Stories pour un détail technique par projet",
+    "Consulter la page LinkedIn de l'entreprise et les offres d'emploi (Paris, Sfax) pour affiner la stack",
+    "Vérifier si olivesoft.tech est la même entité",
+    "Relier chaque technologie aux clients associés pour alimenter le RAG"
+  ]
+}

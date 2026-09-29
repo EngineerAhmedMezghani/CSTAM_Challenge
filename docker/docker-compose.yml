@@ -1,0 +1,63 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-olivesoft}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-olivesoft}
+      POSTGRES_DB: ${POSTGRES_DB:-olivesoft}
+    ports:
+      - "5432:5432"
+    volumes:
+      - olivesoft_postgres_data:/var/lib/postgresql/data
+      - ../db/schema.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-olivesoft}:${POSTGRES_PASSWORD:-olivesoft}@postgres:5432/${POSTGRES_DB:-olivesoft}
+      BACKEND_CORS_ORIGINS: '["http://localhost:5173", "http://localhost:5174", "http://localhost", "http://192.168.0.14:5174"]'
+      HTTP_TIMEOUT: ${HTTP_TIMEOUT:-20}
+      MAX_RESPONSE_SIZE: ${MAX_RESPONSE_SIZE:-5000000}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: http://localhost:5678/
+      GENERIC_TIMEZONE: Africa/Tunis
+      TZ: Africa/Tunis
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      backend:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  olivesoft_postgres_data:
+  n8n_data:

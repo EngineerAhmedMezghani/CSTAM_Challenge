@@ -1,0 +1,24 @@
+{
+  "client": "RTE",
+  "sector_inferred": "Energy / electricity transmission",
+  "confirmed_projects": [
+    {
+      "id": "proj-rte-eco2mix",
+      "title": "Modernisation of eCO2mix mobile app (RTE)",
+      "domain": "Energy / Mobile app",
+      "problem": "Modernize the eCO2mix mobile app giving real-time access to electricity production and consumption data in France.",
+      "solution": "UX/UI recommendations, cross-platform development in React Native (iOS + Android), digital accessibility best practices.",
+      "technologies": [
+        "React Native",
+        "UX/UI",
+        "Accessibility"
+      ],
+      "confidence": "medium - single source: personal LinkedIn post of an OliveSoft employee, not the official site",
+      "url": "https://www.linkedin.com/in/abdessalem-louati-956a1542/"
+    }
+  ],
+  "possibly_related_case_studies": [],
+  "status": "confirmed",
+  "domain": "Energy / Electricity / Mobile Experience",
+  "project_idea": "Modernization of a public-facing energy data app, combining UX/UI, cross-platform mobile development, and accessibility for electricity information services."
+}
