@@ -1,8 +1,0 @@
-
-
-Download Docker Desktop
-Enable WSL2 if prompted (Windows), launch Docker Desktop
-Open a terminal, create the VOLUME: docker volume create n8n_data
-Pull and run in one go: docker run -d --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n
-Run docker ps and confirm the PORTS column shows 0.0.0.0:5678->5678/tcp (not just 5678/tcp) — that arrow means it's actually reachable
-Open http://localhost:5678 and create the owner account
