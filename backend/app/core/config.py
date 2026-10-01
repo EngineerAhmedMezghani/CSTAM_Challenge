@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     ]
     http_timeout: float = 20.0
     max_response_size: int = 5_000_000
+    # Optional authenticated Cookie header for a licensed appeloffres.net
+    # account. It is deliberately supplied through the environment only.
+    appeloffres_cookie: str | None = None
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", case_sensitive=False)
 

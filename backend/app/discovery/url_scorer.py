@@ -41,6 +41,8 @@ def score_url(candidate: LinkCandidate) -> float:
             score -= weight
     if re.search(r"/tender[-_/]?[a-z0-9]+", text):
         score += 35
+    if re.search(r"/appels[-_]offres/[0-9]+", text):
+        score += 60
     if re.search(r"/appels?[-_ ]doffres", text):
         score += 25
     return max(0.0, min(100.0, score))

@@ -14,6 +14,7 @@ from app.models.scrape_job import JobStage, JobStatus, ScrapeJob
 from app.models.tender import Tender
 from app.schemas.scrape_job import ScrapeAcceptedResponse, ScrapeJobCreate, ScrapeJobResponse
 from app.scrapers.normalization import content_hash
+from app.scrapers.generic_extractor import GenericExtractor
 from app.scrapers.router import get_scraper
 
 logger = logging.getLogger(__name__)
@@ -46,10 +47,19 @@ def run_scrape_job(job_id: UUID) -> None:
             job.tender_pages_found = stats.tender_pages_found
             db.commit()
 
-        extractor = getattr(scraper, "generic", scraper)
-        source = GenericWebSource(extractor, CrawlConfig(max_depth=job.max_depth, max_pages=job.max_pages), report)
-        extracted, _ = source.discover_and_extract(job.input_url)
-        if not extracted:
+        if isinstance(scraper, GenericExtractor):
+            source = GenericWebSource(
+                scraper,
+                CrawlConfig(max_depth=job.max_depth, max_pages=job.max_pages),
+                report,
+            )
+            extracted, _ = source.discover_and_extract(job.input_url)
+        else:
+            # A site adapter owns its discovery and extraction strategy. Running
+            # the generic crawler first can produce false positives from listing
+            # rows and prevent the adapter from ever being called.
+            job.current_stage = JobStage.CRAWLING.value
+            db.commit()
             extracted = scraper.scrape(job.input_url)
         job.current_stage = JobStage.EXTRACTION.value
         job.tenders_extracted = len(extracted)

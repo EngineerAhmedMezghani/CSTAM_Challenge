@@ -32,6 +32,21 @@ def test_page_classifier_detects_list_detail_news_and_event():
     assert classify_page("https://example.tn/fr/evenements", event).page_type == PageType.EVENT
 
 
+def test_page_classifier_detects_appeloffres_net_numeric_detail_route():
+    listing = """
+        <h1>Appels d'offres</h1>
+        <a href='/appels-offres/2126540'>Tender A</a>
+        <a href='/appels-offres/2126539'>Tender B</a>
+    """
+    detail = "<h1>Acquisition de serveurs</h1><p>Date limite: 12/10/2026</p>"
+
+    assert classify_page("https://www.appeloffres.net/appels-offres", listing).page_type == PageType.TENDER_LIST
+    assert (
+        classify_page("https://www.appeloffres.net/appels-offres/2126540", detail).page_type
+        == PageType.TENDER_DETAIL
+    )
+
+
 def test_crawler_respects_same_domain_depth_and_page_limits():
     pages = {
         "https://example.tn": "<a href='/fr/appels-doffres'>Appels d'offres</a><a href='https://external.test/x'>External</a>",

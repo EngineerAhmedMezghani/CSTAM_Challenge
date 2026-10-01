@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
 
+from app.discovery.models import PageType
 from app.scrapers.base import BaseScraper, TenderData
 from app.scrapers.generic_extractor import GenericExtractor, clean_text, parse_date
 
@@ -88,6 +89,7 @@ class MarchesPublicsTnScraper(BaseScraper):
                     heading = soup.find(["h1", "h2", "h3"])
                     tender.title = clean_text(heading.get_text(" ") if heading else None)
                 tender.extraction_method = self.extraction_method
+                tender.page_type = PageType.TENDER_DETAIL.value
                 tenders.append(tender)
         return tenders
 
@@ -171,5 +173,8 @@ class MarchesPublicsTnScraper(BaseScraper):
             deadline=deadline,
             documents=documents,
             raw_html_snippet=row.evaluate("element => element.outerHTML")[:5000],
-            extraction_method=self.extraction_method,
+            extraction_method=f"{self.extraction_method}_listing",
+            page_type=PageType.TENDER_LIST_ITEM.value,
+            confidence_score=0.45,
+            confidence_signals={"listing_summary_only": True},
         )

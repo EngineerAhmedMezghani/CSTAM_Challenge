@@ -15,7 +15,7 @@ class TenderData:
     documents: list[str] = field(default_factory=list)
     raw_html_snippet: str | None = None
     extraction_method: str = "generic"
-    page_type: str = "TENDER_DETAIL"
+    page_type: str = "UNKNOWN"
     confidence_score: float | None = None
     confidence_signals: dict[str, bool] = field(default_factory=dict)
     discovery_url: str | None = None

@@ -11,8 +11,11 @@ _NEWS_TERMS = re.compile(r"actualit|news|nouvelle|communique|circulaire", re.I)
 _EVENT_TERMS = re.compile(r"evenement|event|formation|webinaire|salon|workshop", re.I)
 _REGULATION_TERMS = re.compile(r"legislation|reglement|loi|decret|reglementation|juridique", re.I)
 _CONTACT_TERMS = re.compile(r"contact|connexion|login|faq", re.I)
-_DETAIL_PATH = re.compile(r"/appels[-_]doffres?/tender[-_/][^/]+", re.I)
-_LIST_PATH = re.compile(r"/appels[-_]doffres?/?$", re.I)
+_DETAIL_PATH = re.compile(
+    r"/(?:appels[-_](?:d[-_]?)?offres?)/(?:tender[-_/])?[a-z0-9-]+/?$",
+    re.I,
+)
+_LIST_PATH = re.compile(r"/(?:appels[-_](?:d[-_]?)?offres?)/?$", re.I)
 
 
 def _page_text(soup: BeautifulSoup) -> str:
