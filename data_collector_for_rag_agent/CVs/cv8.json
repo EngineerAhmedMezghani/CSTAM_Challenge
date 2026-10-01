@@ -1,5 +1,5 @@
 {
-  "title": "Aspiring Data Engineer | x3 GCP Certified | Transforming data into scalable, reliable solutions",
+  "title": "Data Engineer | Talend Consultant",
   "company": "OliveSoft",
   "location": {
     "city": "Sfax",
@@ -7,88 +7,109 @@
   },
   "projects": [
     {
-      "title": "Data Engineer",
-      "start_date": "2024-10",
-      "end_date": null,
-      "description": null,
-      "summary": null,
-      "key_contributions": [
-        "Contributed to the industrialization and automation of the data platform, using GCP, Python, dbt, Terraform, Airbyte, Cloud Run, and API integrations.",
-        "Designed and migrated 15+ data sources and tables to a new BigQuery-based architecture, improving data consistency and scalability.",
-        "Built end-to-end data flows, models and pipelines for educational journeys, learning paths, pedagogical interactions, customer data, and marketing analytics.",
-        "Optimized production dbt and BigQuery workloads, resolving critical pipeline issues and reducing BigQuery scan costs by 50%.",
-        "Designed and deployed a customer data deduplication and synchronization pipeline with Braze, ensuring reliable data quality and continuity for customer engagement use cases.",
-        "Built a Braze event ingestion pipeline and developed the data models powering 4+ marketing performance dashboards.",
-        "Developed a B2B contract churn-risk scoring solution, combining data modeling, predictive analysis, and dashboards to reduce manual analysis from several days to a few hours per week.",
-        "Developed +3 B2B operational and management dashboards covering team performance and monthly activity, combining detailed data analysis and business KPIs to streamline operations, improve data reliability, and support informed decision-making.",
-        "Collaborated with business, BI, and technical teams to translate business requirements into reliable, scalable data solutions."
-      ],
-      "skills": [
-        "Data Engineering",
-        "Data Build Tool (DBT)",
+    "title":"Intern AI & Data engineer",
+    "start_date": "2026-02",
+    "end_date": "2026-06",
+    "duration_months": 5,
+    "description": "AI-driven platform for B2B prospecting and business opportunity matching – Final Year Project (PFE)",
+    "summary": "Developed an end-to-end AI-driven platform for B2B prospecting and business opportunity matching, aimed at identifying relevant market signals and connecting them with suitable profiles or services.",
+    "key_contributions": [
+        "Designed and implemented a full data pipeline for collecting, cleaning, and normalizing heterogeneous data from multiple web sources.",
+        "Built NLP-based processing modules for information extraction, entity recognition, and semantic analysis using embeddings.",
+        "Developed a multi-dimensional scoring engine combining rule-based logic, machine learning signals, and LLM-based reasoning to ensure both performance and explainability.",
+        "Designed an agent-based AI architecture with specialized agents for search, analysis, and generation, coordinated through a Human-in-the-Loop validation process.",
+        "Implemented semantic matching using vector search and reranking techniques to improve relevance and accuracy of results.",
+        "Orchestrated workflows using n8n to automate data processing and AI pipelines.",
+        "Deployed the system on cloud infrastructure with a modular and scalable architecture."
+    ],
+    "skills": [
+        "NLP",
         "Google Cloud Platform (GCP)",
-        "Google BigQuery",
-        "Airbyte",
-        "Braze",
-        "Data Architecture",
-        "looker",
-        "Terraform",
-        "Git"
-      ]
+        "n8n",
+        "Vector Databases",
+        "Large Language Models (LLMs)",
+        "Graph Embeddings",
+        "Agentic AI Development",
+        "Data Engineering",
+        "Web Scraping",
+        "AI Orchestration"
+    ]
     },
     {
-      "title": "DevOps Engineer intern",
-      "start_date": "2023-06",
-      "end_date": "2023-08",
-      "description": null,
-      "summary": null,
-      "key_contributions": [
-        "Conducting research and experimentation in dockerizing remote engines to enhance scalability and ensure isolation of executed jobs. ",
-        "Containerizing Talend jobs using docker to improve consistency across different environments.",
-        "Deploying containerized jobs using helm charts in a kubernetes cluster."
-      ],
-      "skills": [
-        "Kubernetes",
-        "docker",
-        "Talend",
-        "Azure DevOps",
-        "Git",
-        "Scrum",
-        "Agile Methodologies",
-        "Helm"
-      ]
+    "title":"Software Engineer Intern (Full Stack Developer Intern - Angular / Laravel)",
+    "start_date": "2025-05",
+    "end_date": "2025-08",
+    "duration_months": 3,
+    "description": "Student Extranet Platform",
+    "summary": "contributed to the development of the student extranet for the private faculty ITECH, working on both the front-end and back-end.",
+    "key_contributions": [
+        "Designed and implemented an internal messaging system to streamline communication.",
+        "Developed a customized chatbot to improve student support and interactivity.",
+        "Built and integrated additional student-focused modules to enhance the userexperience.",
+        "Contributed to the API layer and produced Swagger documentation for clear and standardized integration."
+    ],
+    "skills": [
+        "Angular",
+        "Laravel",
+        "JSON Web Token (JWT)",
+        "swagger",
+        "REST APIs",
+        "Chatbot Development",
+        "Full-Stack Development"
+    ]
     },
     {
-      "title": "Wordpress Developer",
-      "start_date": "2023-01",
-      "end_date": "2023-06",
-      "description": null,
-      "summary": null,
-      "key_contributions": [
-        "Responsible for performing modifications and maintenance on the company’s website to ensure optimal performance and user experience. Tasks included updating content, fixing bugs, implementing new features, and ensuring website functionality across all devices and browsers."
-      ],
-      "skills": [
-        "WordPress",
-        "PHP",
-        "Search Engine Optimization (SEO)"
-      ]
+    "title":"Software Engineer Intern –Final Year Project (PFA)",
+    "start_date": "2024-12",
+    "end_date": "2025-04",
+    "duration_months": 5,
+
+    "description": "License Key Generation and Validation System",
+    "summary": "Developed a secure system for software activation key management to control access, duration, and validity of licensed software.",
+    "key_contributions": [
+        "Designed and implemented a license key generator with unique activation logic for each user.",
+        "Built a validation module to verify license status, duration, and usage rights before enabling software access.",
+        "Created a management dashboard for administrators to generate, monitor, and revoke activation keys.",
+        "Integrated encryption techniques to ensure the integrity and confidentiality of license data.",
+        "Simulated real-world use cases of licensing in distributed software systems.",
+        "Focused on security, reliability, and usability for both developers and end-users."
+    ],
+    "skills": [
+        "Software Licensing",
+        "Cryptography",
+        "Django",
+        "hashing",
+        "Information Security"
+    ]
     },
     {
-      "title": "Mobile Application Developer",
-      "start_date": "2022-06",
-      "end_date": "2022-07",
-      "description": null,
-      "summary": null,
-      "key_contributions": [],
-      "skills": [
-        "Flutter",
-        "Dart"
-      ]
+    "title":"Intern",
+    "start_date": "2024-05",
+    "end_date": "2024-08",
+    "duration_months": 5,
+
+    "description": "𝙍𝙚𝙨𝙪𝙢𝙚 𝘾𝙡𝙖𝙨𝙨𝙞𝙛𝙞𝙘𝙖𝙩𝙞𝙤𝙣 𝙎𝙮𝙨𝙩𝙚𝙢 𝙪𝙨𝙞𝙣𝙜 𝘼𝙄 & 𝙉𝙇𝙋",
+    "summary": "Built an intelligent system to automatically predict the professional category of resumes using Natural Language Processing (NLP) and Machine Learning techniques.",
+    "key_contributions": [
+        "Designed and trained a classification model using algorithms like KNeighborsClassifier and OneVsRestClassifier on resume datasets.",
+        "Preprocessed text data with regular expressions, TF-IDF vectorization, and NLTK for effective feature extraction.",
+        "Implemented label encoding and managed model evaluation with accuracy scoring and optimization.",
+        "Developed a Streamlit web app that allows users to upload resumes and get instant category predictions.",
+        "Integrated file parsing, text cleaning, and model deployment using pickle, os, and re.",
+        "Gained experience in data preprocessing, ML pipeline design, and AI-based application development.",
+        "Addressed performance issues related to large datasets and adapted deployment strategies in cloud environments (Google Colab & Kaggle)."
+    ],
+    "skills": [
+    "NLP",
+    "Pycharm",
+    "docker",
+    "Machine Learning",
+    "Anaconda",
+    "Python (Programming Language)",
+    "Flask",
+    "Data Analysis",
+    "Data Modeling"
+    ]
     }
-  ],
-  "additional_technical_expertise": [],
-  "education": {
-    "institution": "Ecole Nationale d'Ingénieurs de Sfax",
-    "field": "Data Engineering"
-  }
+  ]
 }
