@@ -4,6 +4,7 @@ from enum import StrEnum
 
 class PageType(StrEnum):
     TENDER_LIST = "TENDER_LIST"
+    TENDER_LIST_ITEM = "TENDER_LIST_ITEM"
     TENDER_DETAIL = "TENDER_DETAIL"
     NEWS = "NEWS"
     ANNOUNCEMENT = "ANNOUNCEMENT"
