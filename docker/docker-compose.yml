@@ -57,7 +57,17 @@ services:
       backend:
         condition: service_started
     restart: unless-stopped
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
 
 volumes:
   olivesoft_postgres_data:
   n8n_data:
+  qdrant_storage:
