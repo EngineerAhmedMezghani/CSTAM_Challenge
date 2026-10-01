@@ -1,0 +1,1238 @@
+{
+  "name": "OliveSoft - KB Sync + Tender Matching",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "olivesoft_knowledge",
+          "mode": "list",
+          "cachedResultName": "olivesoft_knowledge"
+        },
+        "embeddingBatchSize": 1024,
+        "options": {}
+      },
+      "id": "2bf87f74-a274-476b-bc34-25e34045dd93",
+      "name": "Qdrant Insert KB",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        944,
+        5872
+      ],
+      "credentials": {
+        "qdrantApi": {
+          "id": "klPyvv6oHCrHtiZp",
+          "name": "Qdrant account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "=jina-embeddings-v5-text-small",
+        "options": {}
+      },
+      "id": "489fb9d5-27b0-4dab-870b-8afefb355890",
+      "name": "Embeddings (Ingest)",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        832,
+        6080
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "lcKbyi0R1YQlb8HS",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "90e6c398-fa0c-40ac-b05e-fe1fcf78c06c",
+      "name": "Only Continue Once",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        5872
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "6ce2340d-6306-444d-8746-366b7950258b",
+      "name": "Loop Over Tenders",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1616,
+        6368
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "olivesoft_knowledge",
+          "mode": "list",
+          "cachedResultName": "olivesoft_knowledge"
+        },
+        "prompt": "={{ $json.embedding_text }}",
+        "topK": 10,
+        "options": {}
+      },
+      "id": "b2abde77-1bd3-4c2c-bbb2-af972af968b2",
+      "name": "Qdrant Search KB",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        1888,
+        6448
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "qdrantApi": {
+          "id": "klPyvv6oHCrHtiZp",
+          "name": "Qdrant account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "=jina-embeddings-v5-text-small",
+        "options": {}
+      },
+      "id": "c5f6d04b-f794-4d9d-9ca4-bd2242ae8416",
+      "name": "Embeddings (Query)",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1888,
+        6640
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "lcKbyi0R1YQlb8HS",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ---- config ----\nconst W_BEST = 0.6, W_AVG = 0.4;      // final = 0.6*best + 0.4*avg(top3)\nconst STRONG = 0.75, MEDIUM = 0.60;   // calibrate on your own data\n\nconst tender = $('Loop Over Tenders').first().json;\nconst { embedding_text, ...tenderData } = tender;\n\n// 1) normalise Qdrant hits (score = cosine similarity returned by Qdrant)\nconst hits = $input.all().map(i => i.json)\n  .filter(j => j.document || j.pageContent)\n  .map(j => {\n    const d = j.document || j;\n    const m = d.metadata || {};\n    return { score: Number(j.score), source_type: m.source_type, file_name: m.file_name,\n             file_id: m.file_id, drive_url: m.drive_url, snippet: (d.pageContent || '').slice(0, 200) };\n  })\n  .filter(h => !Number.isNaN(h.score));\n\n// 2) keep best chunk per source file\nconst byFile = new Map();\nfor (const h of hits) {\n  const k = h.file_id || h.file_name || 'unknown';\n  if (!byFile.has(k) || h.score > byFile.get(k).score) byFile.set(k, h);\n}\nconst matches = [...byFile.values()].sort((a, b) => b.score - a.score);\n\n// 3) aggregate scores\nconst best = matches[0]?.score ?? 0;\nconst top3 = matches.slice(0, 3);\nconst avgTop3 = top3.length ? top3.reduce((s, m) => s + m.score, 0) / top3.length : 0;\nconst bestOf = t => Math.max(0, ...matches.filter(m => m.source_type === t).map(m => m.score));\nconst match_score = W_BEST * best + W_AVG * avgTop3;\n\nreturn [{ json: {\n  ...tenderData,\n  match_score: Math.round(match_score * 1000) / 1000,\n  match_percent: Math.round(match_score * 100),\n  match_label: match_score >= STRONG ? 'strong' : match_score >= MEDIUM ? 'medium' : 'weak',\n  best_score: Math.round(best * 1000) / 1000,\n  avg_top3: Math.round(avgTop3 * 1000) / 1000,\n  best_cv_score: Math.round(bestOf('cv') * 1000) / 1000,\n  best_client_score: Math.round(bestOf('client') * 1000) / 1000,\n  top_matches: matches.slice(0, 5)\n} }];"
+      },
+      "id": "3cc45568-15d2-4a41-961c-322b1870d4b1",
+      "name": "Score Tender",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        6448
+      ]
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "match_score",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5b2e424b-f1a4-43f5-a20a-dc9850cec2d6",
+      "name": "Rank Tenders",
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        1968,
+        6160
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 150,
+        "options": {}
+      },
+      "id": "4e9351cb-e1ab-44a5-9ad3-236e4d9d6621",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        2144,
+        6112
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1360,
+        5776
+      ],
+      "id": "ad17d0e8-8c6d-4636-9cea-d6dfbbf0c31b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://qdrant:6333/collections/olivesoft_knowledge/points/delete?wait=true",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "qdrantApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"must\": [\n      {\n        \"key\": \"metadata.source_type\",\n        \"match\": { \"any\": [\"cv\", \"client\"] }\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -1056,
+        5776
+      ],
+      "id": "ecac4a0f-ce5b-4fde-bf76-3ecbb5dc25c2",
+      "name": "Purge KB Vectors",
+      "credentials": {
+        "qdrantApi": {
+          "id": "klPyvv6oHCrHtiZp",
+          "name": "Qdrant account 2"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "id": "acf57b6d-ce8e-4533-96e7-a1cabbf81a72",
+      "name": "Combine Branches",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        896,
+        6448
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    ...$json,\n    scrape_started_at: Date.now(),\n    timeout_ms: 5 * 60 * 1000\n  }\n}];"
+      },
+      "id": "7c4b0d23-fd70-4ac4-93d2-872921e63386",
+      "name": "Code in JavaScript2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1424,
+        6528
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://backend:8000/api/scrape/{{ $('Start Scrape').first().json.job_id }}",
+        "options": {}
+      },
+      "id": "c1a668f4-fa23-4d8d-98a0-1a2597628d4e",
+      "name": "Check Scrape Status2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -1232,
+        6592
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "TimeOut Exceeded"
+      },
+      "id": "6a9a280a-870e-48a3-94b4-40034f6b39db",
+      "name": "Stop and Error1",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        6592
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "id": "8d156cbf-2a72-4171-93f6-77f13b536d67",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -608,
+        6832
+      ],
+      "webhookId": "1520eca2-6878-4f25-86b2-5e97bc63eea3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "40009919-d27c-4bc8-be1b-9e12cf171cb7",
+              "leftValue": "={{ $json.needs_enrichment }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "5bd70532-a482-4564-9750-b0db8548902f",
+      "name": "If needs enrichement1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -16,
+        6432
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const MAX_CHARS = 8000; // keeps you inside Groq token limits\n\nconst clean = html => String(html || '')\n  .replace(/<script[\\s\\S]*?<\\/script>/gi, ' ')\n  .replace(/<style[\\s\\S]*?<\\/style>/gi, ' ')\n  .replace(/<[^>]+>/g, ' ')\n  .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')\n  .replace(/\\s+/g, ' ').trim();\n\nconst out = [];\nfor (const item of $input.all()) {\n  const t = item.json;\n  let page_text = '', fetch_error = null;\n\n  try {\n    const html = await this.helpers.httpRequest({\n      method: 'GET', url: t.source_url, timeout: 15000, json: false,\n      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OlivesoftBot/1.0)' }\n    });\n    page_text = clean(html).slice(0, MAX_CHARS);\n  } catch (e) { fetch_error = e.message; }\n\n  const already_known = {\n    title: t.title, description: (t.description || null)?.slice?.(0, 1500) ?? null,\n    owner: t.owner, contact: t.contact,\n    published_date: t.published_date, deadline: t.deadline, documents: t.documents\n  };\n\n  const system = `You extract structured data from public tender (appel d'offres) pages.\nRules:\n- Use ONLY the provided text. Never invent or guess.\n- If a value is not explicitly present, return null.\n- Keep text fields in their original language.\n- Dates must be ISO format YYYY-MM-DD.\n- \"documents\" must be an array of absolute http(s) URLs.\n- \"description\" must be a factual 2-4 sentence summary of the tender scope.\n- Return a single JSON object containing exactly the requested keys, nothing else.`;\n\n  const user = JSON.stringify({\n    source_url: t.source_url,\n    requested_keys: t.missing_fields,\n    already_known,\n    page_text\n  });\n\n  out.push({ json: {\n    tender: t,\n    page_chars: page_text.length,\n    fetch_error,\n    groq_body: {\n      model: \"openai/gpt-oss-120b\",\n      temperature: 0,\n      max_tokens: 1000,\n      response_format: { type: 'json_object' },\n      messages: [\n        { role: 'system', content: system },\n        { role: 'user', content: user }\n      ]\n    }\n  } });\n}\nreturn out;"
+      },
+      "id": "924c85fd-c953-4632-b189-8637a8c69702",
+      "name": "Fetch Page & Build Prompt1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        6352
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "groqApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.groq_body) }}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 5000
+            }
+          },
+          "timeout": 60000
+        }
+      },
+      "id": "83c2865d-82ae-4d55-a17e-10532c326fc7",
+      "name": "Groq Extract1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        448,
+        6352
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 10000,
+      "credentials": {
+        "groqApi": {
+          "id": "aoLN2QSxRRzT5OXm",
+          "name": "Groq account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const prepared = $('Fetch Page & Build Prompt1').all();\n\nconst isEmpty = v =>\n  v === null || v === undefined ||\n  (typeof v === 'string' && (!v.trim() || /^n\\/?a$/i.test(v.trim()))) ||\n  (Array.isArray(v) && v.length === 0);\nconst isIso = s => typeof s === 'string' && /^\\d{4}-\\d{2}-\\d{2}/.test(s);\n\nreturn $input.all().map((item, i) => {\n  const t = prepared[i].json.tender;\n  let extracted = {}, parsed = false;\n\n  try {\n    extracted = JSON.parse(item.json.choices?.[0]?.message?.content);\n    parsed = true;\n  } catch (e) { /* LLM call failed or returned invalid JSON */ }\n\n  const result = { ...t };\n  const filled = [];\n\n  for (const f of t.missing_fields) {\n    let v = extracted[f];\n    if (isEmpty(v)) continue;\n    if (['published_date', 'deadline'].includes(f) && !isIso(v)) continue;\n    if (f === 'documents') {\n      v = (Array.isArray(v) ? v : [v]).filter(u => /^https?:\\/\\//.test(u));\n      if (!v.length) continue;\n    }\n    if (typeof v === 'string') v = v.trim();\n    result[f] = v;\n    filled.push(f);\n  }\n\n  result.enriched_fields = filled;\n  result.still_missing = t.missing_fields.filter(f => !filled.includes(f));\n  result.enrichment_status = !parsed ? 'failed'\n    : filled.length === 0 ? 'no_data_found'\n    : result.still_missing.length ? 'partial' : 'complete';\n\n  return { json: result };\n});"
+      },
+      "id": "6f936711-d14d-4278-9d93-30ade3f91b7a",
+      "name": "Merge Enriched1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        6352
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": "={{$json.id}}",
+        "options": {}
+      },
+      "id": "8aac81d3-9074-4def-b0db-1a51facad8d6",
+      "name": "Download CVs",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        48,
+        5632
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "B9EEqcn35e0aUvbW",
+          "name": "Google Drive account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": "={{$json.id}}",
+        "options": {}
+      },
+      "id": "fed95ba9-ec4f-4a9c-93ca-2ee96ba6fb40",
+      "name": "Download Client Data",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        48,
+        5872
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "B9EEqcn35e0aUvbW",
+          "name": "Google Drive account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "name = 'cvs' and '11tskJTQRN_sv4d0FkJneiB3gQBeD5Kyn' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false",
+        "returnAll": true,
+        "filter": {},
+        "options": {}
+      },
+      "id": "7e5158a0-4dfd-4b22-a0e0-b48db4a073e4",
+      "name": "Find cvs Folder",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -640,
+        5632
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "B9EEqcn35e0aUvbW",
+          "name": "Google Drive account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "name = 'clients' and '11tskJTQRN_sv4d0FkJneiB3gQBeD5Kyn' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false",
+        "returnAll": true,
+        "filter": {},
+        "options": {}
+      },
+      "id": "35dc630b-b85d-470f-93c1-e8dfe21ba38c",
+      "name": "Find clients Folder",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -640,
+        5872
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "B9EEqcn35e0aUvbW",
+          "name": "Google Drive account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "='{{$json.id}}' in parents and trashed = false and name contains '.md'",
+        "returnAll": true,
+        "filter": {},
+        "options": {
+          "fields": [
+            "id",
+            "name",
+            "mimeType",
+            "createdTime",
+            "size",
+            "webViewLink",
+            "owners"
+          ]
+        }
+      },
+      "id": "9ded16d6-2166-41d0-a38c-e5b832654af0",
+      "name": "List Client Markdown Files",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        5872
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "B9EEqcn35e0aUvbW",
+          "name": "Google Drive account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => ({ json: { ...item.json, source_type: 'client', source_folder: 'clients' } }));"
+      },
+      "id": "5b8019be-ecc6-4a69-b101-5dbf6b726c90",
+      "name": "Tag Client Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        5872
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => ({ json: { ...item.json, source_type: 'cv', source_folder: 'cvs' } }));"
+      },
+      "id": "c2ddf5af-274f-446d-aee0-bac287888ffc",
+      "name": "Tag CV Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        5632
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "='{{$json.id}}' in parents and trashed = false and name contains '.md'",
+        "returnAll": true,
+        "filter": {},
+        "options": {
+          "fields": [
+            "id",
+            "name",
+            "mimeType",
+            "createdTime",
+            "size",
+            "webViewLink",
+            "owners"
+          ]
+        }
+      },
+      "id": "c0d564cb-5f1f-4563-a301-cfc58f1fed33",
+      "name": "List CV Markdown Files",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        5632
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "B9EEqcn35e0aUvbW",
+          "name": "Google Drive account 3"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "bf49b54a-d851-4a99-86f3-820caa1ba3d3",
+      "name": "Merge Documents",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        272,
+        5760
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const out = [];\nfor (const [i, item] of $input.all().entries()) {\n  const key = Object.keys(item.binary || {})[0];\n  let text = '';\n  if (key) {\n    const buf = await this.helpers.getBinaryDataBuffer(i, key);\n    text = buf.toString('utf8');\n  }\n  if (!text.trim()) continue;\n  out.push({ json: { pageContent: text, metadata: {\n    source_type: item.json.source_type,\n    source_folder: item.json.source_folder,\n    file_name: item.json.name,\n    file_id: item.json.id,\n    mime_type: item.json.mimeType,\n    created_time: item.json.createdTime,\n    size: item.json.size,\n    owner: item.json.owners?.[0]?.emailAddress || null,\n    drive_url: item.json.webViewLink || null\n  } } });\n}\nreturn out;"
+      },
+      "id": "80617346-1c57-4ae9-b515-5e73196a16f2",
+      "name": "Read Markdown + Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        5760
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Only semantically useful fields go into the query embedding\n// (URLs, extraction method, page type etc. are noise for similarity)\nreturn items.map(item => {\n  const t = item.json;\n  const embedding_text = [\n    `Tender Title: ${t.title || 'N/A'}`,\n    `Description: ${(t.description || 'N/A').slice(0, 4000)}`,\n    `Owner: ${t.owner || 'N/A'}`\n  ].join('\\n\\n');\n  return { json: { ...t, embedding_text } };\n});"
+      },
+      "id": "cb25b2c0-7896-432e-9741-dfe76e3a5e81",
+      "name": "Build Tender Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        6448
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a9ac5ab5-f37f-40bd-9e15-7fc6ee5a5fd7",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "done",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0dde75fb-88ec-40ad-bdfa-1c42d5111cc7",
+      "name": "If Done",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1008,
+        6512
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "277aeee9-9ee1-44ed-9c77-4da60ad01853",
+              "leftValue": "={{ Date.now() - $('Code in JavaScript2').first().json.scrape_started_at }}",
+              "rightValue": "={{ $('Code in JavaScript2').first().json.timeout_ms }}",
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "197ec2a4-e3e7-4b5c-b01c-9be91eea7eb4",
+      "name": "If Timeout",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -832,
+        6624
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://backend:8000/api/scrape",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "https://www.appeloffres.com/resultat?mot=/"
+            },
+            {
+              "name": "max_depth",
+              "value": "3"
+            },
+            {
+              "name": "max_pages",
+              "value": "50"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3c642527-9487-4d4d-8d01-e47e8e77a795",
+      "name": "Start Scrape",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -1600,
+        6528
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const FIELDS = ['description', 'owner', 'contact', 'published_date', 'deadline', 'documents'];\n\nconst isEmpty = v =>\n  v === null || v === undefined ||\n  (typeof v === 'string' && (!v.trim() || /^n\\/?a$/i.test(v.trim()))) ||\n  (Array.isArray(v) && v.length === 0);\n\nreturn $input.all().map(({ json: t }) => {\n  const missing_fields = FIELDS.filter(f => isEmpty(t[f]));\n  return { json: { ...t, missing_fields, needs_enrichment: missing_fields.length > 0 && !!t.source_url } };\n});"
+      },
+      "id": "c3f21338-74db-4747-b1a7-43dc477207f6",
+      "name": "Find Missing Fields",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        6432
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const tenders = $input.first().json.items || [];\nreturn tenders.map(t => ({ json: {\n  tender_id: t.id, job_id: t.job_id,\n  title: t.title, description: t.description,\n  owner: t.owner, contact: t.contact,\n  published_date: t.published_date, deadline: t.deadline,\n  documents: t.documents, source_url: t.source_url,\n  extraction_method: t.extraction_method, page_type: t.page_type,\n  confidence_score: t.confidence_score, confidence_signals: t.confidence_signals,\n  discovery_url: t.discovery_url, discovery_depth: t.discovery_depth, discovery_path: t.discovery_path,\n  scraped_at: t.scraped_at\n} }));"
+      },
+      "id": "6f0afeba-5555-4611-9489-df1f329674c9",
+      "name": "Split Tenders",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -464,
+        6432
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://backend:8000/api/tenders",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "job_id",
+              "value": "={{ $('Start Scrape').first().json.job_id }}"
+            },
+            {
+              "name": "page",
+              "value": "1"
+            },
+            {
+              "name": "page_size",
+              "value": "20"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ea7ecc7d-3e5c-4798-a842-23a1ae328ed3",
+      "name": "Get Tenders",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -704,
+        6432
+      ]
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.pageContent }}",
+        "textSplittingMode": "custom",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "source_type",
+                "value": "={{ $json.metadata.source_type }}"
+              },
+              {
+                "name": "source_folder",
+                "value": "={{ $json.metadata.source_folder }}"
+              },
+              {
+                "name": "file_name",
+                "value": "={{ $json.metadata.file_name }}"
+              },
+              {
+                "name": "file_id",
+                "value": "={{ $json.metadata.file_id }}"
+              },
+              {
+                "name": "drive_url",
+                "value": "={{ $json.metadata.drive_url }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "28d10ab0-0fec-43eb-8753-61087b3e862f",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        1072,
+        6080
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Embeddings (Ingest)": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Insert KB",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Insert KB": {
+      "main": [
+        [
+          {
+            "node": "Only Continue Once",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Only Continue Once": {
+      "main": [
+        [
+          {
+            "node": "Start Scrape",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tenders": {
+      "main": [
+        [
+          {
+            "node": "Rank Tenders",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Qdrant Search KB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings (Query)": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Search KB",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Search KB": {
+      "main": [
+        [
+          {
+            "node": "Score Tender",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score Tender": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tenders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Purge KB Vectors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Purge KB Vectors": {
+      "main": [
+        [
+          {
+            "node": "Find cvs Folder",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Find clients Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Branches": {
+      "main": [
+        [
+          {
+            "node": "Build Tender Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Check Scrape Status2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Scrape Status2": {
+      "main": [
+        [
+          {
+            "node": "If Done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Check Scrape Status2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If needs enrichement1": {
+      "main": [
+        [
+          {
+            "node": "Fetch Page & Build Prompt1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Combine Branches",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Fetch Page & Build Prompt1": {
+      "main": [
+        [
+          {
+            "node": "Groq Extract1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Extract1": {
+      "main": [
+        [
+          {
+            "node": "Merge Enriched1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Enriched1": {
+      "main": [
+        [
+          {
+            "node": "Combine Branches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download CVs": {
+      "main": [
+        [
+          {
+            "node": "Merge Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Client Data": {
+      "main": [
+        [
+          {
+            "node": "Merge Documents",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Find cvs Folder": {
+      "main": [
+        [
+          {
+            "node": "List CV Markdown Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find clients Folder": {
+      "main": [
+        [
+          {
+            "node": "List Client Markdown Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Client Markdown Files": {
+      "main": [
+        [
+          {
+            "node": "Tag Client Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Client Metadata": {
+      "main": [
+        [
+          {
+            "node": "Download Client Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag CV Metadata": {
+      "main": [
+        [
+          {
+            "node": "Download CVs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List CV Markdown Files": {
+      "main": [
+        [
+          {
+            "node": "Tag CV Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Documents": {
+      "main": [
+        [
+          {
+            "node": "Read Markdown + Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Markdown + Metadata": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Insert KB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Tender Text": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tenders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Done": {
+      "main": [
+        [
+          {
+            "node": "Get Tenders",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If Timeout",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Timeout": {
+      "main": [
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Scrape": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Missing Fields": {
+      "main": [
+        [
+          {
+            "node": "If needs enrichement1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Tenders": {
+      "main": [
+        [
+          {
+            "node": "Find Missing Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Tenders": {
+      "main": [
+        [
+          {
+            "node": "Split Tenders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Insert KB",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "11749e0a-c26f-4f31-b253-0e7903102ca1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "71aec27bf50bef08808b98fe1dddfa1b274f025fda026aae51a2361fbe455ecf"
+  },
+  "nodeGroups": [],
+  "id": "39CFcFPR6HTnPBQ6",
+  "tags": []
+}
